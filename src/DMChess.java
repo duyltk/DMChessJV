@@ -8,7 +8,7 @@ public class DMChess {
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
-            {" "," "," "," "," ","k"," "," "},
+            {" "," "," "," "," "," "," "," "},
             {"P","P","P","P","K","P","P","P"},
             {"R","K"," "," ","A"," "," ","R"}
     };
@@ -287,7 +287,7 @@ public class DMChess {
                 }catch(Exception e){}
             }
         }
-        return false;
+        return true;
 
     }
 
@@ -459,6 +459,9 @@ public class DMChess {
         oldPiece = Board[nextRow][nextCol];
         Board[nextRow][nextCol] = Board[preRow][preCol];
         Board[preRow][preCol] = " ";
+        if(Board[nextRow][nextCol].equals("A")){
+            kingPositionU = nextRow * 8 + nextCol;
+        }
         if (safeKing()){
             List = List + preRow + preCol + nextRow + nextCol + oldPiece;
         }
