@@ -9,7 +9,7 @@ public class DMChess {
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
-            {"P","P","P"," ","P","P","P","P"},
+            {"P","P","P","P","P","P","P","P"},
             {"R","K","B","Q","A","B","K","R"}
     };
     int kingPositionU = 0;
@@ -17,9 +17,9 @@ public class DMChess {
         drawBoard();
         String move = "";
         for(int i = 0; i < 64; i++) {
-            if ("K".equals(Board[i/8][i%8])){
+            if ("Q".equals(Board[i/8][i%8])){
 
-                move = move + moveKnight(i);
+                move = move + moveQueen(i);
             }
         }
         System.out.print(move);
@@ -33,34 +33,28 @@ public class DMChess {
         }
     }
     public static String moveRook(int position){
-        String list = "", oldPiece;
+        String list = "", getMove;
         int row = position / 8;
         int col = position % 8;
         int distance = 1;
-        for (int j = -1; j <=1; j++) {
-            for (int k = -1; k <= 1; k++) {
-                if (k * j == 0 && k != j) {
+        for (int i = -1; i <=1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                if (i * j == 0 && i != j) {
                     try {
-                        while (" ".equals(Board[row + distance * j][col + distance * k])) {
-                            oldPiece = " ";
-                            Board[row][col] = " ";
-                            Board[row + distance * j][col + distance * k] = "R";
-                            if (safeKing()) {
-                                list = list + row + col + (row + distance * j) + (col + distance * k) + " ";
+                        while (" ".equals(Board[row + distance * i][col + distance * j])) {
+                            getMove = Set_GetMove(row, col, row + distance * i , col + distance * j );
+                            if(getMove.length() != 0)
+                            {
+                                list = list + getMove;
                             }
-                            Board[row][col] = "R";
-                            Board[row + distance * j][col + distance * k] = oldPiece;
                             distance++;
                         }
-                        if (Character.isLowerCase((Board[row + distance * j][col + distance * k]).charAt(0))) {
-                            oldPiece = Board[row + distance * j][col + distance * k];
-                            Board[row][col] = " ";
-                            Board[row + distance * j][col + distance * k] = "R";
-                            if (safeKing()) {
-                                list = list + row + col + (row + distance * j) + (col + distance * k) + oldPiece;
+                        if (Character.isLowerCase((Board[row + distance * i][col + distance * j]).charAt(0))) {
+                            getMove = Set_GetMove(row, col, row + distance * i , col + distance * j );
+                            if(getMove.length() != 0)
+                            {
+                                list = list + getMove;
                             }
-                            Board[row][col] = "R";
-                            Board[row + distance * j][col + distance * k] = oldPiece;
                         }
                     } catch (Exception e) { }
                     distance = 1;
@@ -70,7 +64,7 @@ public class DMChess {
         return list;
     }
     public static String moveQueen(int position){
-        String list = "", oldPiece;
+        String list = "", getMove;
         int row = position / 8, col = position % 8;
         int distance = 1;
         for (int i = -1; i <= 1; i++){
@@ -78,25 +72,19 @@ public class DMChess {
                 if (i != 0 || j != 0){
                     try{
                         while(" ".equals(Board[row + distance * i][col + distance * j])){
-                            oldPiece = " ";
-                            Board[row][col] = " ";
-                            Board[row + distance * i][col + distance * j] = "Q";
-                            if (safeKing()){
-                                list = list + row + col + (row + distance * i) + (col + distance * j) + " ";
+                            getMove = Set_GetMove(row, col, row + distance * i , col + distance * j );
+                            if(getMove.length() != 0)
+                            {
+                                list = list + getMove;
                             }
-                            Board[row][col] = "Q";
-                            Board[row + distance * i][col + distance * j] = " ";
                             distance++;
                         }
                         if (Character.isLowerCase(Board[row + distance * i][col + distance * j].charAt(0))){
-                            oldPiece = Board[row + distance * i][col + distance * j];
-                            Board[row][col] = " ";
-                            Board[row + distance * i][col + distance * j] = "Q";
-                            if (safeKing()){
-                                list = list + row + col + (row + distance * i) + (col + distance * j) + oldPiece;
+                            getMove = Set_GetMove(row, col, row + distance * i , col + distance * j );
+                            if(getMove.length() != 0)
+                            {
+                                list = list + getMove;
                             }
-                            Board[row][col] = "Q";
-                            Board[row + distance * i][col + distance * j] = oldPiece;
                         }
                     }catch(Exception e){ }
                     distance = 1;
