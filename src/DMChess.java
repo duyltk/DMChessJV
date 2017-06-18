@@ -4,13 +4,13 @@
 public class DMChess {
     static String Board[][]={
             {"r","k","b","q","a","b","k","r"},
-            {"p","p","p","p","p","p","P","p"},
+            {"p","p","p","p","p","p","p","p"},
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
-            {" "," "," "," "," "," "," "," "},
-            {"P","P","P","P","K","P","P","P"},
-            {"R","K","B","Q","A","B","K","R"}
+            {" "," "," "," "," "," ","k"," "},
+            {"P","P","P","P"," ","P","P","P"},
+            {"R"," "," "," ","A"," "," ","R"}
     };
 
 
@@ -24,22 +24,17 @@ public class DMChess {
 
 
     public static void main(String[] args) {
-//        drawBoard();
-//        String move = "";
-//        for(int i = 0; i < 64; i++) {
-//            if ("A".equals(Board[i/8][i%8])){
-//                kingPositionU = i;
-//            }
-//            if ("a".equals(Board[i/8][i%8])){
-//                kingPositionL = i;
-//            }
-//        }
-//        for(int i = 0; i < 64; i++) {
-//            if ("K".equals(Board[i/8][i%8])){
-//                move = move + moveKnight(i);
-//            }
-//        }
-//        System.out.print(move);
+        drawBoard();
+        String move = "";
+        for(int i = 0; i < 64; i++) {
+            if ("A".equals(Board[i/8][i%8])){
+                kingPositionU = i;
+            }
+            if ("a".equals(Board[i/8][i%8])){
+                kingPositionL = i;
+            }
+        }
+        System.out.print(movePieces());
 
 
     }
@@ -467,6 +462,9 @@ public class DMChess {
         }
         Board[preRow][preCol] = Board[nextRow][nextCol];
         Board[nextRow][nextCol] = oldPiece;
+        if(Board[preRow][preRow].equals("A")){
+            kingPositionU = preRow * 8 + preRow;
+        }
         return List;
     }
 }
