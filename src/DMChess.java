@@ -49,6 +49,36 @@ public class DMChess {
             System.out.println();
         }
     }
+    public static String movePieces(){
+        String List = "";
+        for (int position = 0; position < 64; position++)
+        {
+            if (!Character.isUpperCase(Board[position / 8][position % 8].charAt(0)))
+                continue;
+            switch (Board[position / 8][position % 8])
+            {
+                case "P":
+                    List = List + movePawn(position);
+                    break;
+                case "R":
+                    List = List + moveRook(position);
+                    break;
+                case "K":
+                    List = List + moveKnight(position);
+                    break;
+                case "B":
+                    List = List + moveBishop(position);
+                    break;
+                case "Q":
+                    List = List + moveQueen(position);
+                    break;
+                case "A":
+                    List = List + moveKing(position);
+                    break;
+            }
+        }
+        return List;
+    }
     public static String moveRook(int position){
         // Return: list has a structure:
         //      normal: [row][col][next row][next col][piece at next row, next col]
@@ -381,5 +411,12 @@ public class DMChess {
         Board[preRow][preCol] = Board[nextRow][nextCol];
         Board[nextRow][nextCol] = oldPiece;
         return List;
+    }
+    public static void applyMove(String Move)
+    {
+        if (Move.charAt(4) == 'P')
+        {
+
+        }
     }
 }
