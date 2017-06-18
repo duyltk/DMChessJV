@@ -22,6 +22,7 @@ public class DMChess {
     static Boolean castlingLLong = true;
 
 
+
     public static void main(String[] args) {
         drawBoard();
         String move = "";
@@ -48,6 +49,36 @@ public class DMChess {
                 System.out.print(Board[i][j] + ";");
             System.out.println();
         }
+    }
+    public static String movePieces(){
+        String List = "";
+        for (int position = 0; position < 64; position++)
+        {
+            if (!Character.isUpperCase(Board[position / 8][position % 8].charAt(0)))
+                continue;
+            switch (Board[position / 8][position % 8])
+            {
+                case "P":
+                    List = List + movePawn(position);
+                    break;
+                case "R":
+                    List = List + moveRook(position);
+                    break;
+                case "K":
+                    List = List + moveKnight(position);
+                    break;
+                case "B":
+                    List = List + moveBishop(position);
+                    break;
+                case "Q":
+                    List = List + moveQueen(position);
+                    break;
+                case "A":
+                    List = List + moveKing(position);
+                    break;
+            }
+        }
+        return List;
     }
     public static String moveRook(int position){
         // Return: list has a structure:
@@ -185,6 +216,7 @@ public class DMChess {
         return list;
     }
     public static Boolean safeKing(){
+
         int distance = 1;
         //Bishop & Queen diagonal
         int rowKing = kingPositionU / 8;
@@ -256,6 +288,7 @@ public class DMChess {
             }
         }
         return false;
+
     }
 
     public static String moveKnight(int position){
