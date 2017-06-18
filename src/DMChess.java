@@ -73,12 +73,20 @@ public class DMChess {
                     {
                         if(" ".equals(Board[row + tempRow][col + tempCol]) || Character.isLowerCase(Board[row + tempRow][col + tempCol].charAt(0)))
                         {
-                            if(safeKing())
+                            oldPiece = Board[row + tempRow][col + tempCol];
+                            Board[row + tempRow][col + tempCol] = "K";
+                            Board[row][col] = " ";
+                            if (safeKing()) {
+                                List += row + col + (row + tempRow) + (col + tempCol) + oldPiece;
+                            }
+                            Board[row + tempRow][col + tempCol] = oldPiece;
+                            Board[row][col] = "K";
                         }
 
                     }catch (Exception e){}
                 }
             }
         }
+        return List;
     }
 }
