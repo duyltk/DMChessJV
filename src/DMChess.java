@@ -18,6 +18,7 @@ public class DMChess {
         String move = "";
         for(int i = 0; i < 64; i++) {
             if ("K".equals(Board[i/8][i%8])){
+
                 move = move + moveKnight(i);
             }
         }
@@ -128,8 +129,9 @@ public class DMChess {
     }
 
     public static String moveKnight(int position){
-        String List = "", oldPiece;
-        int row = position / 8, col = position % 8;
+        String List = "", getMove;
+        int row = position / 8,
+                col = position % 8;
         //Row colume from -2, -1, 1, 2
         for (int tempRow = -2; tempRow <= 2; tempRow++)
         {
@@ -141,20 +143,54 @@ public class DMChess {
                     {
                         if(" ".equals(Board[row + tempRow][col + tempCol]) || Character.isLowerCase(Board[row + tempRow][col + tempCol].charAt(0)))
                         {
-                            oldPiece = Board[row + tempRow][col + tempCol];
-                            Board[row + tempRow][col + tempCol] = "K";
-                            Board[row][col] = " ";
-                            if (safeKing()) {
-                                List = List + row + col + (row + tempRow) + (col + tempCol) + oldPiece;
+                            getMove = Set_GetMove(row, col, row + tempRow , col + tempCol );
+                            if(getMove.length() != 0)
+                            {
+                                List = List + getMove;
                             }
-                            Board[row + tempRow][col + tempCol] = oldPiece;
-                            Board[row][col] = "K";
                         }
 
                     }catch (Exception e){}
                 }
             }
         }
+        return List;
+    }
+    public static String moveBishop(int position){
+        String List = "", oldPiece;
+        int row = position / 8,
+                col = position % 8,
+                distance = 1;
+        for (int tempRow = -1; tempRow <= 1; tempRow += 2)
+        {
+            for (int tempCol = -1; tempCol <= 1; tempCol += 2)
+            {
+                try
+                {
+                    while (" ".equals(Board[row + tempRow * distance][col + tempCol * distance].charAt(0)))
+                    {
+                        Board[row + tempRow * distance][col + tempCol * distance] = "B";
+                        Board[row][col] = " ";
+
+                        distance++;
+                    }
+
+                }catch (Exception e){}
+                distance = 1;
+            }
+        }
+        return List;
+    }
+    public static String Set_GetMove(int preRow, int preCol, int nextRow, int nextCol){
+        String List= "", oldPiece;
+        oldPiece = Board[nextRow][nextCol];
+        Board[nextRow][nextCol] = Board[preRow][preCol];
+        Board[preRow][preCol] = " ";
+        if (safeKing()){
+            List = List + preRow + preCol + nextRow + nextCol + oldPiece;
+        }
+        Board[preRow][preCol] = Board[nextRow][nextCol];
+        Board[nextRow][nextCol] = oldPiece;
         return List;
     }
 }
