@@ -10,7 +10,7 @@ public class DMChess {
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
             {"P","P","P","P","K","P","P","P"},
-            {"R","K"," "," ","A"," "," ","R"}
+            {"R","K","B","Q","A","B","K","R"}
     };
 
 
@@ -24,22 +24,22 @@ public class DMChess {
 
 
     public static void main(String[] args) {
-        drawBoard();
-        String move = "";
-        for(int i = 0; i < 64; i++) {
-            if ("A".equals(Board[i/8][i%8])){
-                kingPositionU = i;
-            }
-            if ("a".equals(Board[i/8][i%8])){
-                kingPositionL = i;
-            }
-        }
-        for(int i = 0; i < 64; i++) {
-            if ("P".equals(Board[i/8][i%8])){
-                move = move + movePawn(i);
-            }
-        }
-        System.out.print(move);
+//        drawBoard();
+//        String move = "";
+//        for(int i = 0; i < 64; i++) {
+//            if ("A".equals(Board[i/8][i%8])){
+//                kingPositionU = i;
+//            }
+//            if ("a".equals(Board[i/8][i%8])){
+//                kingPositionL = i;
+//            }
+//        }
+//        for(int i = 0; i < 64; i++) {
+//            if ("K".equals(Board[i/8][i%8])){
+//                move = move + moveKnight(i);
+//            }
+//        }
+//        System.out.print(move);
 
 
     }
@@ -280,7 +280,7 @@ public class DMChess {
             for (int j = -1; j <= 1; j++){
                 try{
                     if(i != 0 || j!= 0) {
-                        if ("a".equals(Board[rowKing + i][rowKing + j])) {
+                        if ("a".equals(Board[rowKing + i][colKing + j])) {
                             return false;
                         }
                     }
