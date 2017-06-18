@@ -4,12 +4,12 @@
 public class DMChess {
     static String Board[][]={
             {"r","k","b","q","a","b","k","r"},
-            {"p","p","p","p","p","p","P","p"},
+            {"p","p","p","p","p","p","p","p"},
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
-            {"P","P","P","P","K","P","P","P"},
+            {"P","P","P","P","P","P","P","P"},
             {"R","K","B","Q","A","B","K","R"}
     };
 
@@ -34,11 +34,12 @@ public class DMChess {
 //                kingPositionL = i;
 //            }
 //        }
-//        for(int i = 0; i < 64; i++) {
-//            if ("K".equals(Board[i/8][i%8])){
-//                move = move + moveKnight(i);
+//        for(int i = 0; i < 64; i++){
+//            if ("A".equals(Board[i/8][i%8])){
+//                move = move + moveKing(i);
 //            }
 //        }
+//
 //        System.out.print(move);
 
 
