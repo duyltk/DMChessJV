@@ -4,7 +4,7 @@
 public class DMChess {
     static String Board[][]={
             {"r","k","b","q","a","b","k","r"},
-            {"p","p","p","p","p","p","p","p"},
+            {"p","p","p","p","p","p","P","p"},
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
@@ -14,15 +14,15 @@ public class DMChess {
     };
     int kingPositionU = 0;
     public static void main(String[] args) {
-        drawBoard();
-        String move = "";
-        for(int i = 0; i < 64; i++) {
-            if ("Q".equals(Board[i/8][i%8])){
-
-                move = move + moveQueen(i);
-            }
-        }
-        System.out.print(move);
+//        drawBoard();
+//        String move = "";
+//        for(int i = 0; i < 64; i++) {
+//            if ("P".equals(Board[i/8][i%8])){
+//
+//                move = move + movePawn(i);
+//            }
+//        }
+//        System.out.print(move);
 
     }
     public static void drawBoard(){
@@ -33,6 +33,8 @@ public class DMChess {
         }
     }
     public static String moveRook(int position){
+        // Return: list has a structure:
+        //      normal: [row][col][next row][next col][piece at next row, next col]
         String list = "", getMove;
         int row = position / 8;
         int col = position % 8;
@@ -64,6 +66,8 @@ public class DMChess {
         return list;
     }
     public static String moveQueen(int position){
+        // Return: list has a structure:
+        //      normal: [row][col][next row][next col][piece at next row, next col]
         String list = "", getMove;
         int row = position / 8, col = position % 8;
         int distance = 1;
@@ -91,6 +95,76 @@ public class DMChess {
                 }
             }
         }
+        return list;
+    }
+    public static String movePawn(int position){
+        // Return: list has a structure:
+        //      normal: [row][col][next row][next col][piece at next row, next col]
+        //      if pawn promotion : [col] [nex col] [captured piece] [promoted Piece] [P(pawn)]
+
+        String list = "", getMove, oldPiece;
+        int row = position / 8, col = position % 8;
+        for(int tempCol = -1; tempCol <=1; tempCol+=2){
+            // capture opponent's piece
+            try{
+                if (Character.isLowerCase(Board[row - 1][col + tempCol].charAt(0)) && row != 1){
+                    getMove = Set_GetMove(row, col, row -1, col+tempCol);
+                    if(getMove.length() != 0){
+                        list = list + getMove;
+                    }
+                }
+            }catch(Exception e){}
+            // capture opponent's piece and promote
+            try{
+                if (Character.isLowerCase(Board[row - 1][col + tempCol].charAt(0)) && row == 1){
+                    String temp[] = {"Q", "R", "K", "B"};
+                    for (int i = 0; i < 4; i++) {
+                        oldPiece = Board[row - 1][col + tempCol];
+                        Board[row][col] = " ";
+                        Board[row - 1][col + tempCol] = temp[i];
+                        if (safeKing()) {
+                            list = list + col + (col + tempCol) + oldPiece + temp[i] + "P";
+                        }
+                        Board[row][col] = "P";
+                        Board[row - 1][col + tempCol] = oldPiece;
+                    }
+                }
+            }catch(Exception e){}
+        }
+        //go straight 1 distance
+        try{
+            if (" ".equals(Board[row - 1][col]) && row != 1){
+                getMove = Set_GetMove(row, col, row -1, col);
+                if (getMove.length() != 0){
+                    list = list + getMove;
+                }
+            }
+        }catch(Exception e){}
+        //go straight 1 distance and promote
+        try{
+            if (" ".equals(Board[row - 1][col]) && row == 1){
+                String temp[] = {"Q", "R", "K", "B"};
+                for (int i = 0; i < 4; i++) {
+                    oldPiece = " ";
+                    Board[row][col] = " ";
+                    Board[row - 1][col] = temp[i];
+                    if (safeKing()) {
+                        list = list + col + (col) + oldPiece + temp[i] + "P";
+                    }
+                    Board[row][col] = "P";
+                    Board[row - 1][col] = " ";
+                }
+            }
+        }catch(Exception e){}
+        //go straight 2 distance
+        try{
+            if (" ".equals(Board[row - 1][col]) && " ".equals(Board[row - 2][col]) && row == 6){
+                getMove = Set_GetMove(row, col, row -2, col);
+                if (getMove.length() != 0){
+                    list = list + getMove;
+                }
+            }
+        }catch(Exception e){}
         return list;
     }
     public static Boolean safeKing(){
