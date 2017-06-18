@@ -219,7 +219,7 @@ public class DMChess {
         return List;
     }
     public static String moveBishop(int position){
-        String List = "", oldPiece;
+        String List = "", getMove;
         int row = position / 8,
                 col = position % 8,
                 distance = 1;
@@ -229,14 +229,21 @@ public class DMChess {
             {
                 try
                 {
-                    while (" ".equals(Board[row + tempRow * distance][col + tempCol * distance].charAt(0)))
+                    while (" ".equals(Board[row + tempRow * distance][col + tempCol * distance]))
                     {
-                        Board[row + tempRow * distance][col + tempCol * distance] = "B";
-                        Board[row][col] = " ";
-
+                        getMove = Set_GetMove(row, col, row + tempRow * distance, col + tempCol * distance);
+                        if (getMove.length() != 0){
+                            List = List + getMove;
+                        }
                         distance++;
                     }
-
+                    if (Character.isLowerCase(Board[row + tempRow * distance][col + tempCol * distance].charAt(0)))
+                    {
+                        getMove = Set_GetMove(row, col, row + tempRow * distance, col + tempCol * distance);
+                        if (getMove.length() != 0){
+                            List = List + getMove;
+                        }
+                    }
                 }catch (Exception e){}
                 distance = 1;
             }
