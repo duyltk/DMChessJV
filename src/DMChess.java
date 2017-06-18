@@ -29,9 +29,34 @@ public class DMChess {
         int row = i / 8;
         int col = i % 8;
         int distance = 1;
-        for (int j = -1; j <=1; j++){
-            for (int k = -1; k <=1; k++){
-
+        for (int j = -1; j <=1; j++) {
+            for (int k = -1; k <= 1; k++) {
+                if (k * j == 0 && k != j) {
+                    try {
+                        while (" ".equals(Board[row + distance * j][col + distance * k])) {
+                            oldPiece = " ";
+                            Board[row][col] = " ";
+                            Board[row + distance * j][col + distance * k] = "R";
+                            if (safeKing()) {
+                                list += row + col + (row + distance * j) + (col + distance * k) + " ";
+                            }
+                            Board[row][col] = "R";
+                            Board[row + distance * j][col + distance * k] = oldPiece;
+                            distance++;
+                        }
+                        if (Character.isLowerCase((Board[row + distance * j][col + distance * k]).charAt(0))) {
+                            oldPiece = Board[row + distance * j][col + distance * k];
+                            Board[row][col] = " ";
+                            Board[row + distance * j][col + distance * k] = "R";
+                            if (safeKing()) {
+                                list += row + col + (row + distance * j) + (col + distance * k) + oldPiece;
+                            }
+                            Board[row][col] = "R";
+                            Board[row + distance * j][col + distance * k] = oldPiece;
+                        }
+                    } catch (Exception e) { }
+                    distance = 1;
+                }
             }
         }
         return list;
