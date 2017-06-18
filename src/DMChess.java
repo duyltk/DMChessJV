@@ -12,16 +12,23 @@ public class DMChess {
             {"P","P","P","P","P","P","P","P"},
             {"R","K","B","Q","A","B","K","R"}
     };
-    int kingPositionU = 0;
+
+    static int kingPositionU = 0;
+    static int kingPositionL = 0;
+    static Boolean castlingUShort = true;
+    static Boolean castlingULong = true;
+    static Boolean castlingLShort = true;
+    static Boolean castlingLLong = true;
+
     public static void main(String[] args) {
         drawBoard();
         String move = "";
-        for(int i = 0; i < 64; i++) {
-            if ("Q".equals(Board[i/8][i%8])){
-
-                move = move + moveQueen(i);
-            }
-        }
+//        for(int i = 0; i < 64; i++) {
+//            if ("A".equals(Board[i/8][i%8])){
+//
+//                move = move + moveKing(i);
+//            }
+//        }
         System.out.print(move);
 
     }
@@ -172,6 +179,109 @@ public class DMChess {
                     }
                 }catch (Exception e){}
                 distance = 1;
+            }
+        }
+        return List;
+    }
+    public static String moveKing(int position){
+        String List = "", getMove;
+        int row = position / 8,
+                col = position % 8;
+        for (int tempRow = -1; tempRow <= 1; tempRow++)
+        {
+            for (int tempCol = -1; tempCol <= 1; tempCol++)
+            {
+                try
+                {
+                    if ( !(tempRow == 0 && tempCol == 0) && (" ".equals(Board[row + tempRow][col + tempCol]) || Character.isLowerCase(Board[row + tempRow][col + tempCol].charAt(0))))
+                    {
+                        getMove = Set_GetMove(row, col, row + tempRow,  col + tempCol);
+                        if (getMove.length() != 0)
+                        {
+                            List = List + getMove;
+                        }
+                    }
+                }catch (Exception e){}
+            }
+        }
+        //Castling upper long
+        if (castlingULong && safeKing() && "A".equals(Board[7][4]) && "R".equals(Board[7][0]) && " ".equals(Board[7][1]) && " ".equals(Board[7][2]) && " ".equals(Board[7][3]))
+        {
+            Boolean checkCastling = true;
+            //Colume where King move
+            for (int tempCol = 1; tempCol <= 3; tempCol++)
+            {
+                getMove = Set_GetMove(7,4,7,tempCol);
+                if (getMove.length() == 0)
+                {
+                    checkCastling = false;
+                    break;
+                }
+            }
+            if (checkCastling)
+            {
+                //Colume Previous King, Rook => Next King, Rook
+                List = List + "4023C";
+            }
+        }
+        //Castling upper short
+        if (castlingUShort && safeKing() && "A".equals(Board[7][4]) && "R".equals(Board[7][7]) && " ".equals(Board[7][5]) && " ".equals(Board[7][6]))
+        {
+            Boolean checkCastling = true;
+            //Colume where King move
+            for (int tempCol = 5; tempCol <= 6; tempCol++)
+            {
+                getMove = Set_GetMove(7,4,7,tempCol);
+                if (getMove.length() == 0)
+                {
+                    checkCastling = false;
+                    break;
+                }
+            }
+            if (checkCastling)
+            {
+                //Colume Previous King, Rook => Next King, Rook
+                List = List + "4765C";
+            }
+        }
+        //Castling lower long when convert from MIN=>Max
+        if (castlingLLong && safeKing() && "A".equals(Board[7][3]) && "R".equals(Board[7][7]) && " ".equals(Board[7][4]) && " ".equals(Board[7][5]) && " ".equals(Board[7][6]))
+        {
+            Boolean checkCastling = true;
+            //Colume where King move
+            for (int tempCol = 4; tempCol <= 6; tempCol++)
+            {
+                getMove = Set_GetMove(7,4,7,tempCol);
+                if (getMove.length() == 0)
+                {
+                    checkCastling = false;
+                    break;
+                }
+            }
+            if (checkCastling)
+            {
+                //Colume Previous King, Rook => Next King, Rook
+                List = List + "3754C";
+            }
+        }
+        //Castling lower long when convert from MIN=>Max
+        if (castlingLShort && safeKing() && "A".equals(Board[7][3]) && "R".equals(Board[7][0]) && " ".equals(Board[7][1]) && " ".equals(Board[7][2]))
+        {
+            Boolean checkCastling = true;
+            //Colume where King move
+            for (int tempCol = 1; tempCol <= 2; tempCol++)
+            {
+                getMove = Set_GetMove(7,4,7,tempCol);
+                if (getMove.length() == 0)
+                {
+                    checkCastling = false;
+                    break;
+                }
+            }
+            if (checkCastling)
+            {
+                //Colume Previous King, Rook => Next King, Rook
+                List = List + "3012C";
             }
         }
         return List;
