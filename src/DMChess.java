@@ -12,25 +12,8 @@ public class DMChess {
             {"P","P","P","P","P","P","P","P"},
             {"R","K","B","Q","A","B","K","R"}
     };
-
     static int kingPositionU = 0;
-    static int kingPositionL = 0;
-    static Boolean castlingUShort = true;
-    static Boolean castlingULong = true;
-    static Boolean castlingLShort = true;
-    static Boolean castlingLLong = true;
-
     public static void main(String[] args) {
-//        drawBoard();
-//        String move = "";
-//        for(int i = 0; i < 64; i++) {
-//            if ("A".equals(Board[i/8][i%8])){
-//
-//                move = move + moveKing(i);
-//            }
-//        }
-//        System.out.print(move);
-
 //        drawBoard();
 //        String move = "";
 //        for(int i = 0; i < 64; i++) {
@@ -215,25 +198,76 @@ public class DMChess {
         return list;
     }
     public static Boolean safeKing(){
-//        int distance = 1;
-//        //Bishop & Queen diagonal
-//        for (int i = -1; i <=1; i+=2){
-//            for (int j = -1; j <= 1; j += 2){
-//                try
-//                {
-//                    while (" ".Equals(chessBoard[kingPositionU / 8 + distance * i][ kingPositionU % 8 + distance * j]))
-//                    {
-//                        distance++;
-//                    }
-//                    if ("b".Equals(chessBoard[kingPositionU / 8 + distance * i][ kingPositionU % 8 + distance * j]) || "q".Equals(chessBoard[kingPositionU / 8 + distance * i][ kingPositionU % 8 + distance * j]))
-//                    {
-//                        return false;
-//                    }
-//                }
-//                catch (Exception e) { }
-//                distance = 1;
-//            }
-//        }
+        int distance = 1;
+        //Bishop & Queen diagonal
+        int rowKing = kingPositionU / 8;
+        int colKing = kingPositionU % 8;
+        for (int i = -1; i <=1; i+=2){ // let the King move like Bishop and Queen
+            for (int j = -1; j <= 1; j += 2){
+                try
+                {
+                    while (" ".equals(Board[rowKing + distance * i][ colKing + distance * j]))
+                    {
+                        distance++;
+                    }
+                    if ("b".equals(Board[rowKing+ distance * i][ colKing % 8 + distance * j]) || "q".equals(Board[rowKing + distance * i][ colKing + distance * j]))
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception e) { }
+                distance = 1;
+            }
+        }
+        //Rook & Queen go straight
+        for (int i = -1; i <= 1; i++) // let the King move like Rook and Queen
+            for(int j = -1; j<=1; j++){
+                if (i * j == 0 && i != j ){
+                    try{
+                        while(" ".equals(Board[rowKing + distance * i][ colKing + distance * j])){
+                            distance++;
+                        }
+                        if("r".equals(Board[rowKing + distance * i][colKing + distance * j]) || "q".equals(Board[rowKing + distance * i][colKing + distance * j])){
+                            return false;
+                        }
+                    }catch (Exception e){}
+                    distance = 1;
+                }
+            }
+        //Knight
+        for (int i = -2; i<=2; i++){ // let the King move like Knight
+                for (int j =-2; j<=2; j++){
+                    if (Math.abs(i*j) == 2){
+                        try{
+                            if ("k".equals(Board[rowKing + i][colKing + j])){
+                                return false;
+                            }
+                        }catch (Exception e){}
+                    }
+                }
+        }
+        //Pawn
+        if (rowKing > 1){
+            for (int i =-1; i <=1; i+=2){
+                try{
+                    if ("p".equals(Board[rowKing -1][colKing + i])){
+                        return false;
+                    }
+                }catch (Exception e){}
+            }
+        }
+        //King
+        for(int i =-1; i<= 1; i++){
+            for (int j = -1; j <= 1; j++){
+                try{
+                    if(i != 0 || j!= 0) {
+                        if ("a".equals(Board[rowKing + i][rowKing + j])) {
+                            return false;
+                        }
+                    }
+                }catch(Exception e){}
+            }
+        }
         return true;
     }
 
@@ -293,109 +327,6 @@ public class DMChess {
                     }
                 }catch (Exception e){}
                 distance = 1;
-            }
-        }
-        return List;
-    }
-    public static String moveKing(int position){
-        String List = "", getMove;
-        int row = position / 8,
-                col = position % 8;
-        for (int tempRow = -1; tempRow <= 1; tempRow++)
-        {
-            for (int tempCol = -1; tempCol <= 1; tempCol++)
-            {
-                try
-                {
-                    if ( !(tempRow == 0 && tempCol == 0) && (" ".equals(Board[row + tempRow][col + tempCol]) || Character.isLowerCase(Board[row + tempRow][col + tempCol].charAt(0))))
-                    {
-                        getMove = Set_GetMove(row, col, row + tempRow,  col + tempCol);
-                        if (getMove.length() != 0)
-                        {
-                            List = List + getMove;
-                        }
-                    }
-                }catch (Exception e){}
-            }
-        }
-        //Castling upper long
-        if (castlingULong && safeKing() && "A".equals(Board[7][4]) && "R".equals(Board[7][0]) && " ".equals(Board[7][1]) && " ".equals(Board[7][2]) && " ".equals(Board[7][3]))
-        {
-            Boolean checkCastling = true;
-            //Colume where King move
-            for (int tempCol = 1; tempCol <= 3; tempCol++)
-            {
-                getMove = Set_GetMove(7,4,7,tempCol);
-                if (getMove.length() == 0)
-                {
-                    checkCastling = false;
-                    break;
-                }
-            }
-            if (checkCastling)
-            {
-                //Colume Previous King, Rook => Next King, Rook
-                List = List + "4023C";
-            }
-        }
-        //Castling upper short
-        if (castlingUShort && safeKing() && "A".equals(Board[7][4]) && "R".equals(Board[7][7]) && " ".equals(Board[7][5]) && " ".equals(Board[7][6]))
-        {
-            Boolean checkCastling = true;
-            //Colume where King move
-            for (int tempCol = 5; tempCol <= 6; tempCol++)
-            {
-                getMove = Set_GetMove(7,4,7,tempCol);
-                if (getMove.length() == 0)
-                {
-                    checkCastling = false;
-                    break;
-                }
-            }
-            if (checkCastling)
-            {
-                //Colume Previous King, Rook => Next King, Rook
-                List = List + "4765C";
-            }
-        }
-        //Castling lower long when convert from MIN=>Max
-        if (castlingLLong && safeKing() && "A".equals(Board[7][3]) && "R".equals(Board[7][7]) && " ".equals(Board[7][4]) && " ".equals(Board[7][5]) && " ".equals(Board[7][6]))
-        {
-            Boolean checkCastling = true;
-            //Colume where King move
-            for (int tempCol = 4; tempCol <= 6; tempCol++)
-            {
-                getMove = Set_GetMove(7,4,7,tempCol);
-                if (getMove.length() == 0)
-                {
-                    checkCastling = false;
-                    break;
-                }
-            }
-            if (checkCastling)
-            {
-                //Colume Previous King, Rook => Next King, Rook
-                List = List + "3754C";
-            }
-        }
-        //Castling lower long when convert from MIN=>Max
-        if (castlingLShort && safeKing() && "A".equals(Board[7][3]) && "R".equals(Board[7][0]) && " ".equals(Board[7][1]) && " ".equals(Board[7][2]))
-        {
-            Boolean checkCastling = true;
-            //Colume where King move
-            for (int tempCol = 1; tempCol <= 2; tempCol++)
-            {
-                getMove = Set_GetMove(7,4,7,tempCol);
-                if (getMove.length() == 0)
-                {
-                    checkCastling = false;
-                    break;
-                }
-            }
-            if (checkCastling)
-            {
-                //Colume Previous King, Rook => Next King, Rook
-                List = List + "3012C";
             }
         }
         return List;
