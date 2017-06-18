@@ -8,9 +8,9 @@ public class DMChess {
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
-            {" "," "," "," "," "," ","k"," "},
-            {"P","P","P","P"," ","P","P","P"},
-            {"R"," "," "," ","A"," "," ","R"}
+            {" "," "," "," "," "," "," ","P"},
+            {"P","P","P","P","P","P","P"," "},
+            {"R","K","B","Q","A","B","K","R"}
 
     };
 
@@ -36,9 +36,9 @@ public class DMChess {
                 kingPositionL = i;
             }
         }
-        System.out.print(movePieces());
-
-
+        //System.out.print(movePieces());
+        flipBoard();
+        drawBoard();
 
     }
     public static void drawBoard(){
@@ -47,6 +47,29 @@ public class DMChess {
                 System.out.print(Board[i][j] + ";");
             System.out.println();
         }
+    }
+    public static void flipBoard(){
+        String temp = "";
+        for(int i = 0; i < 32; i++){
+            int row = i/8, col = i % 8;
+            if(Character.isLowerCase(Board[row][col].charAt(0))){
+                temp = Board[row][col].toUpperCase();
+            }
+            else{
+                temp = Board[row][col].toLowerCase();
+            }
+            if(Character.isLowerCase(Board[7 - row][7 - col].charAt(0))){
+                Board[row][col] = Board[7 - row][7 - col].toUpperCase();
+            }
+            else{
+                Board[row][col]= Board[7 - row][7 - col].toLowerCase();
+            }
+            Board[7 - row][7 - col] = temp;
+        }
+        int temp2 = 63 - kingPositionU;
+        kingPositionU = 63 - kingPositionL;
+        kingPositionL = temp2;
+
     }
     public static String movePieces(){
         String List = "";
