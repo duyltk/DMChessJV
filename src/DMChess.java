@@ -468,4 +468,62 @@ public class DMChess {
         }
         return List;
     }
+    public static void applyMove(String Move)
+    {
+        // Return: list has a structure:
+        //      normal: [row][col][next row][next col][piece at next row, next col]
+        //      if pawn promotion : [col] [nex col] [captured piece] [promoted Piece] [P(pawn)]
+        if (Move.charAt(4) == 'P')
+        {
+            Board[1][Character.getNumericValue(Move.charAt(0))] = " ";
+            Board[0][Character.getNumericValue(Move.charAt(1))] = String.valueOf(Move.charAt(3));
+        }
+        //Colume [Previous King], [Rook ]=> [Next King], [Rook]
+        else if (Move.charAt(4) == 'C')
+        {
+            Board[7][Character.getNumericValue(Move.charAt(0))] = " ";
+            Board[7][Character.getNumericValue(Move.charAt(1))] = " ";
+            Board[7][Character.getNumericValue(Move.charAt(2))] = "A";
+            Board[7][Character.getNumericValue(Move.charAt(3))] = "R";
+            kingPositionU = 7 * 8 + Character.getNumericValue(Move.charAt(2));
+        }
+        //[Previous Row, Col] [Next Row, Col] [Captured Piece]
+        else {
+            Board[Character.getNumericValue(Move.charAt(2))][Character.getNumericValue(Move.charAt(3))] = Board[Character.getNumericValue(Move.charAt(0))][Character.getNumericValue(Move.charAt(1))];
+            Board[Character.getNumericValue(Move.charAt(0))][Character.getNumericValue(Move.charAt(1))] = " ";
+            if ("A".equals(Board[Character.getNumericValue(Move.charAt(2))][Character.getNumericValue(Move.charAt(3))]))
+            {
+                kingPositionU = Character.getNumericValue(Move.charAt(2)) * 8 + Character.getNumericValue(Move.charAt(3));
+            }
+        }
+    }
+    public static void undoMove(String Move)
+    {
+        // Return: list has a structure:
+        //      normal: [row][col][next row][next col][piece at next row, next col]
+        //      if pawn promotion : [col] [nex col] [captured piece] [promoted Piece] [P(pawn)]
+        if (Move.charAt(4) == 'P')
+        {
+            Board[0][Character.getNumericValue(Move.charAt(1))] = String.valueOf(Move.charAt(2));
+            Board[1][Character.getNumericValue(Move.charAt(0))] = "P";
+        }
+        //Colume [Previous King], [Rook ]=> [Next King], [Rook]
+        else if (Move.charAt(4) == 'C')
+        {
+            Board[7][Character.getNumericValue(Move.charAt(0))] = "A";
+            Board[7][Character.getNumericValue(Move.charAt(1))] = "R";
+            Board[7][Character.getNumericValue(Move.charAt(2))] = " ";
+            Board[7][Character.getNumericValue(Move.charAt(3))] = " ";
+            kingPositionU = 7 * 8 + Character.getNumericValue(Move.charAt(0));
+        }
+        //[Previous Row, Col] [Next Row, Col] [Captured Piece]
+        else {
+            Board[Character.getNumericValue(Move.charAt(0))][Character.getNumericValue(Move.charAt(1))] = Board[Character.getNumericValue(Move.charAt(2))][Character.getNumericValue(Move.charAt(3))];
+            Board[Character.getNumericValue(Move.charAt(2))][Character.getNumericValue(Move.charAt(3))] = String.valueOf(Move.charAt(4));
+            if ("A".equals(Board[Character.getNumericValue(Move.charAt(0))][Character.getNumericValue(Move.charAt(1))]))
+            {
+                kingPositionU = Character.getNumericValue(Move.charAt(0)) * 8 + Character.getNumericValue(Move.charAt(1));
+            }
+        }
+    }
 }
