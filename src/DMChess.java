@@ -12,7 +12,7 @@ public class DMChess {
             {"P","P","P","P","P","P","P","P"},
             {"R","K","B","Q","A","B","K","R"}
     };
-    int kingPositionU = 0;
+    static int kingPositionU = 0;
     public static void main(String[] args) {
 //        drawBoard();
 //        String move = "";
@@ -168,25 +168,76 @@ public class DMChess {
         return list;
     }
     public static Boolean safeKing(){
-//        int distance = 1;
-//        //Bishop & Queen diagonal
-//        for (int i = -1; i <=1; i+=2){
-//            for (int j = -1; j <= 1; j += 2){
-//                try
-//                {
-//                    while (" ".Equals(chessBoard[kingPositionU / 8 + distance * i][ kingPositionU % 8 + distance * j]))
-//                    {
-//                        distance++;
-//                    }
-//                    if ("b".Equals(chessBoard[kingPositionU / 8 + distance * i][ kingPositionU % 8 + distance * j]) || "q".Equals(chessBoard[kingPositionU / 8 + distance * i][ kingPositionU % 8 + distance * j]))
-//                    {
-//                        return false;
-//                    }
-//                }
-//                catch (Exception e) { }
-//                distance = 1;
-//            }
-//        }
+        int distance = 1;
+        //Bishop & Queen diagonal
+        int rowKing = kingPositionU / 8;
+        int colKing = kingPositionU % 8;
+        for (int i = -1; i <=1; i+=2){ // let the King move like Bishop and Queen
+            for (int j = -1; j <= 1; j += 2){
+                try
+                {
+                    while (" ".equals(Board[rowKing + distance * i][ colKing + distance * j]))
+                    {
+                        distance++;
+                    }
+                    if ("b".equals(Board[rowKing+ distance * i][ colKing % 8 + distance * j]) || "q".equals(Board[rowKing + distance * i][ colKing + distance * j]))
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception e) { }
+                distance = 1;
+            }
+        }
+        //Rook & Queen go straight
+        for (int i = -1; i <= 1; i++) // let the King move like Rook and Queen
+            for(int j = -1; j<=1; j++){
+                if (i * j == 0 && i != j ){
+                    try{
+                        while(" ".equals(Board[rowKing + distance * i][ colKing + distance * j])){
+                            distance++;
+                        }
+                        if("r".equals(Board[rowKing + distance * i][colKing + distance * j]) || "q".equals(Board[rowKing + distance * i][colKing + distance * j])){
+                            return false;
+                        }
+                    }catch (Exception e){}
+                    distance = 1;
+                }
+            }
+        //Knight
+        for (int i = -2; i<=2; i++){ // let the King move like Knight
+                for (int j =-2; j<=2; j++){
+                    if (Math.abs(i*j) == 2){
+                        try{
+                            if ("k".equals(Board[rowKing + i][colKing + j])){
+                                return false;
+                            }
+                        }catch (Exception e){}
+                    }
+                }
+        }
+        //Pawn
+        if (rowKing > 1){
+            for (int i =-1; i <=1; i+=2){
+                try{
+                    if ("p".equals(Board[rowKing -1][colKing + i])){
+                        return false;
+                    }
+                }catch (Exception e){}
+            }
+        }
+        //King
+        for(int i =-1; i<= 1; i++){
+            for (int j = -1; j <= 1; j++){
+                try{
+                    if(i != 0 || j!= 0) {
+                        if ("a".equals(Board[rowKing + i][rowKing + j])) {
+                            return false;
+                        }
+                    }
+                }catch(Exception e){}
+            }
+        }
         return true;
     }
 
