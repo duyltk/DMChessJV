@@ -9,7 +9,7 @@ public class DMChess {
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
-            {" ","P","P","P","P","P","P","P"},
+            {"P","P","P","P","P","P","P","P"},
             {"R","K","B","Q","A","B","K","R"}
     };
     int kingPositionU = 0;
@@ -17,9 +17,8 @@ public class DMChess {
         drawBoard();
         String move = "";
         for(int i = 0; i < 64; i++) {
-            if ("K".equals(Board[i/8][i%8])){
-
-                move = move + moveKnight(i);
+            if ("B".equals(Board[i/8][i%8])){
+                move = move + moveBishop(i);
             }
         }
         System.out.print(move);
@@ -121,7 +120,7 @@ public class DMChess {
         return List;
     }
     public static String moveBishop(int position){
-        String List = "", oldPiece;
+        String List = "", getMove;
         int row = position / 8,
                 col = position % 8,
                 distance = 1;
@@ -131,14 +130,21 @@ public class DMChess {
             {
                 try
                 {
-                    while (" ".equals(Board[row + tempRow * distance][col + tempCol * distance].charAt(0)))
+                    while (" ".equals(Board[row + tempRow * distance][col + tempCol * distance]))
                     {
-                        Board[row + tempRow * distance][col + tempCol * distance] = "B";
-                        Board[row][col] = " ";
-
+                        getMove = Set_GetMove(row, col, row + tempRow * distance, col + tempCol * distance);
+                        if (getMove.length() != 0){
+                            List = List + getMove;
+                        }
                         distance++;
                     }
-
+                    if (Character.isLowerCase(Board[row + tempRow * distance][col + tempCol * distance].charAt(0)))
+                    {
+                        getMove = Set_GetMove(row, col, row + tempRow * distance, col + tempCol * distance);
+                        if (getMove.length() != 0){
+                            List = List + getMove;
+                        }
+                    }
                 }catch (Exception e){}
                 distance = 1;
             }
