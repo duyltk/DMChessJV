@@ -8,7 +8,7 @@ public class DMChess {
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
-            {" "," "," "," ","q","k"," "," "},
+            {" "," "," "," "," ","k"," "," "},
             {"P","P","P","P","K","P","P","P"},
             {"R","K"," "," ","A"," "," ","R"}
     };
@@ -34,8 +34,8 @@ public class DMChess {
             }
         }
         for(int i = 0; i < 64; i++) {
-            if ("K".equals(Board[i/8][i%8])){
-                move = move + moveKnight(i);
+            if ("P".equals(Board[i/8][i%8])){
+                move = move + movePawn(i);
             }
         }
         System.out.print(move);
@@ -255,7 +255,7 @@ public class DMChess {
                 }catch(Exception e){}
             }
         }
-        return true;
+        return false;
     }
 
     public static String moveKnight(int position){
