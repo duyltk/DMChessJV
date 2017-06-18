@@ -26,8 +26,8 @@ public class DMChess {
     }
     public static String moveRook(int position){
         String list = "", oldPiece;
-        int row = i / 8;
-        int col = i % 8;
+        int row = position / 8;
+        int col = position % 8;
         int distance = 1;
         for (int j = -1; j <=1; j++) {
             for (int k = -1; k <= 1; k++) {
