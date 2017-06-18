@@ -9,15 +9,23 @@ public class DMChess {
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
-            {"P","P","P","P","P","P","P","P"},
+            {" ","P","P","P","P","P","P","P"},
             {"R","K","B","Q","A","B","K","R"}
     };
     int kingPositionU = 0;
     public static void main(String[] args) {
+        drawBoard();
+        String move = "";
+        for(int i = 0; i < 64; i++) {
+            if ("R".equals(Board[i/8][i%8])){
 
+                move = move + moveRook(i);
+            }
+        }
+        System.out.print(move);
 
     }
-    public static void drawBoard(String Board[][]){
+    public static void drawBoard(){
         for(int i = 0; i < 8; i++){
             for (int j = 0; j < 8; j ++)
                 System.out.print(Board[i][j] + ";");
@@ -38,7 +46,7 @@ public class DMChess {
                             Board[row][col] = " ";
                             Board[row + distance * j][col + distance * k] = "R";
                             if (safeKing()) {
-                                list += row + col + (row + distance * j) + (col + distance * k) + " ";
+                                list = list + row + col + (row + distance * j) + (col + distance * k) + " ";
                             }
                             Board[row][col] = "R";
                             Board[row + distance * j][col + distance * k] = oldPiece;
@@ -49,7 +57,7 @@ public class DMChess {
                             Board[row][col] = " ";
                             Board[row + distance * j][col + distance * k] = "R";
                             if (safeKing()) {
-                                list += row + col + (row + distance * j) + (col + distance * k) + oldPiece;
+                                list = list + row + col + (row + distance * j) + (col + distance * k) + oldPiece;
                             }
                             Board[row][col] = "R";
                             Board[row + distance * j][col + distance * k] = oldPiece;
@@ -102,7 +110,7 @@ public class DMChess {
                             Board[row + tempRow][col + tempCol] = "K";
                             Board[row][col] = " ";
                             if (safeKing()) {
-                                List += row + col + (row + tempRow) + (col + tempCol) + oldPiece;
+                                List = List + row + col + (row + tempRow) + (col + tempCol) + oldPiece;
                             }
                             Board[row + tempRow][col + tempCol] = oldPiece;
                             Board[row][col] = "K";
