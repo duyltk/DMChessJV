@@ -211,9 +211,7 @@ public class DMChess {
         return list;
     }
     public static Boolean safeKing(){
-
         int distance = 1;
-        //Bishop & Queen diagonal
         int rowKing = kingPositionU / 8;
         int colKing = kingPositionU % 8;
         for (int i = -1; i <=1; i+=2){ // let the King move like Bishop and Queen
@@ -462,8 +460,8 @@ public class DMChess {
         }
         Board[preRow][preCol] = Board[nextRow][nextCol];
         Board[nextRow][nextCol] = oldPiece;
-        if(Board[preRow][preRow].equals("A")){
-            kingPositionU = preRow * 8 + preRow;
+        if(Board[preRow][preCol].equals("A")){
+            kingPositionU = preRow * 8 + preCol;
         }
         return List;
     }
