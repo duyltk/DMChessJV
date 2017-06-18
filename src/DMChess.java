@@ -9,7 +9,7 @@ public class DMChess {
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
-            {" ","P","P","P","P","P","P","P"},
+            {"P","P","P"," ","P","P","P","P"},
             {"R","K","B","Q","A","B","K","R"}
     };
     int kingPositionU = 0;
@@ -17,9 +17,8 @@ public class DMChess {
         drawBoard();
         String move = "";
         for(int i = 0; i < 64; i++) {
-            if ("R".equals(Board[i/8][i%8])){
-
-                move = move + moveRook(i);
+            if ("K".equals(Board[i/8][i%8])){
+                move = move + moveKnight(i);
             }
         }
         System.out.print(move);
@@ -63,6 +62,42 @@ public class DMChess {
                             Board[row + distance * j][col + distance * k] = oldPiece;
                         }
                     } catch (Exception e) { }
+                    distance = 1;
+                }
+            }
+        }
+        return list;
+    }
+    public static String moveQueen(int position){
+        String list = "", oldPiece;
+        int row = position / 8, col = position % 8;
+        int distance = 1;
+        for (int i = -1; i <= 1; i++){
+            for(int j = -1; j <= 1; j++){
+                if (i != 0 || j != 0){
+                    try{
+                        while(" ".equals(Board[row + distance * i][col + distance * j])){
+                            oldPiece = " ";
+                            Board[row][col] = " ";
+                            Board[row + distance * i][col + distance * j] = "Q";
+                            if (safeKing()){
+                                list = list + row + col + (row + distance * i) + (col + distance * j) + " ";
+                            }
+                            Board[row][col] = "Q";
+                            Board[row + distance * i][col + distance * j] = " ";
+                            distance++;
+                        }
+                        if (Character.isLowerCase(Board[row + distance * i][col + distance * j].charAt(0))){
+                            oldPiece = Board[row + distance * i][col + distance * j];
+                            Board[row][col] = " ";
+                            Board[row + distance * i][col + distance * j] = "Q";
+                            if (safeKing()){
+                                list = list + row + col + (row + distance * i) + (col + distance * j) + oldPiece;
+                            }
+                            Board[row][col] = "Q";
+                            Board[row + distance * i][col + distance * j] = oldPiece;
+                        }
+                    }catch(Exception e){ }
                     distance = 1;
                 }
             }
