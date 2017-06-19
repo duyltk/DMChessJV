@@ -78,14 +78,14 @@ public class DMChess {
             {-30,-30,  0,  0,  0,  0,-30,-30},
             {-50,-30,-30,-30,-30,-30,-30,-50}};
 
-    static int node = 0;
-    static int globalDepth = 5;
-    static int kingPositionU = 0;
-    static int kingPositionL = 0;
-    static boolean castlingUShort = true;
-    static boolean castlingULong = true;
-    static boolean castlingLShort = true;
-    static boolean castlingLLong = true;
+//    static int node = 0;
+//    static int globalDepth = 5;
+//    static int kingPositionU = 0;
+//    static int kingPositionL = 0;
+//    static boolean castlingUShort = true;
+//    static boolean castlingULong = true;
+//    static boolean castlingLShort = true;
+//    static boolean castlingLLong = true;
 
     public static void main(String[] args) {
 //        Scanner scan = new Scanner(System.in);
