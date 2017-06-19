@@ -2,15 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ce9c8b8-b037-4eee-b15a-7d3176949570" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DMChessJV/DMChess.class" afterPath="$PROJECT_DIR$/out/production/DMChessJV/DMChess.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DMChessJV/DMUI.class" afterPath="$PROJECT_DIR$/out/production/DMChessJV/DMUI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DMChessJV/DMUI_ChessBoard.class" afterPath="$PROJECT_DIR$/out/production/DMChessJV/DMUI_ChessBoard.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DMChessJV/DMUI_Square.class" afterPath="$PROJECT_DIR$/out/production/DMChessJV/DMUI_Square.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/DMChess.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/DMUI.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/DMUI_ChessBoard$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/DMUI_ChessBoard$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/DMUI_ChessBoard.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/DMUI_Square.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/image/icons/about.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/image/icons/app_icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/image/icons/board.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/image/pieces/black_bishop.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/image/pieces/black_king.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/image/pieces/black_knight.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/image/pieces/black_pawn.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/image/pieces/black_queen.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/image/pieces/black_rook.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/image/pieces/white_bishop.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/image/pieces/white_king.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/image/pieces/white_knight.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/image/pieces/white_pawn.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/image/pieces/white_queen.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/image/pieces/white_rook.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DMChessJV/image/stylesheet.css" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DMChess.java" afterPath="$PROJECT_DIR$/src/DMChess.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DMUI.java" afterPath="$PROJECT_DIR$/src/DMUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DMUI_ChessBoard.java" afterPath="$PROJECT_DIR$/src/DMUI_ChessBoard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DMUI_Square.java" afterPath="$PROJECT_DIR$/src/DMUI_Square.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,37 +43,20 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DMChess.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DMChess.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DMChess.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-649">
-              <caret line="118" column="26" lean-forward="true" selection-start-line="118" selection-start-column="26" selection-end-line="118" selection-end-column="26" />
+            <state relative-caret-position="12114">
+              <caret line="829" column="58" lean-forward="true" selection-start-line="829" selection-start-column="58" selection-end-line="829" selection-end-column="58" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DMUI_ChessBoard.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DMUI_ChessBoard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="73" column="25" lean-forward="true" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="imports" expanded="true" />
-                <element signature="e#1123#1400#0" expanded="true" />
-                <element signature="e#1399#1400#0" expanded="true" />
-                <element signature="e#1549#1550#0" expanded="true" />
-                <element signature="e#1588#1589#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DMUI.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DMUI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DMUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
+            <state relative-caret-position="1869">
               <caret line="131" column="56" lean-forward="false" selection-start-line="131" selection-start-column="56" selection-end-line="131" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -68,8 +68,8 @@
       <file leaf-file-name="DMUI_Square.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DMUI_Square.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-570">
-              <caret line="6" column="40" lean-forward="true" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+            <state relative-caret-position="45">
+              <caret line="6" column="40" lean-forward="false" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -107,10 +107,11 @@
       <find>applyMo</find>
       <find>&quot;A&quot;.equals</find>
       <find>youWin</find>
-      <find>endGame</find>
-      <find>kingPositionU</find>
       <find>safeKing</find>
       <find>you</find>
+      <find>kingPositionU</find>
+      <find>endGame</find>
+      <find>HEAD</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -124,15 +125,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Piece.java" />
-        <option value="$PROJECT_DIR$/src/Square.java" />
-        <option value="$PROJECT_DIR$/src/FXStarter.java" />
-        <option value="$PROJECT_DIR$/src/image/MyJavaFXProgram.java" />
-        <option value="$PROJECT_DIR$/src/MyJavaFXProgram.java" />
-        <option value="$PROJECT_DIR$/src/DMUI_Square.java" />
-        <option value="$PROJECT_DIR$/src/DMUI.java" />
         <option value="$PROJECT_DIR$/src/DMChess.java" />
-        <option value="$PROJECT_DIR$/src/DMUI_ChessBoard.java" />
+        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
       </list>
     </option>
   </component>
@@ -157,7 +151,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -219,19 +213,12 @@
               <option name="myItemId" value="production" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DMChessJV" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
-  </component>
-  <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -246,21 +233,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.DMUI">
-    <configuration default="false" name="DMChess" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="DMChess" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="DMChessJV" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="false" name="DMUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="DMUI" />
@@ -425,14 +397,12 @@
       <listeners />
       <method />
     </configuration>
-    <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="Application.DMChess" />
-      <item index="1" class="java.lang.String" itemvalue="Application.DMUI" />
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Application.DMUI" />
     </list>
     <recent_temporary>
-      <list size="2">
+      <list size="1">
         <item index="0" class="java.lang.String" itemvalue="Application.DMUI" />
-        <item index="1" class="java.lang.String" itemvalue="Application.DMChess" />
       </list>
     </recent_temporary>
   </component>
@@ -455,11 +425,11 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32965517" sideWeight="0.46571428" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32965517" sideWeight="0.46285716" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32965517" sideWeight="0.54285717" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32965517" sideWeight="0.54571426" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32965517" sideWeight="0.45714286" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32965517" sideWeight="0.4542857" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -491,6 +461,35 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/DMChess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DMUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1785">
+          <caret line="131" column="56" lean-forward="false" selection-start-line="131" selection-start-column="56" selection-end-line="131" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DMUI_Square.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="6" column="40" lean-forward="false" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/DMChess.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8955">
@@ -692,39 +691,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
           <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FXStarter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="26" lean-forward="true" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/image/MyJavaFXProgram.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MyJavaFXProgram.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FXStarter.java" />
+    <entry file="file://$PROJECT_DIR$/src/image/MyJavaFXProgram.java" />
+    <entry file="file://$PROJECT_DIR$/src/MyJavaFXProgram.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/src.zip!/java/lang/Runnable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
           <caret line="67" column="25" lean-forward="false" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -732,35 +708,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="55">
           <caret line="12" column="38" lean-forward="true" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DMUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="131" column="56" lean-forward="false" selection-start-line="131" selection-start-column="56" selection-end-line="131" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DMUI_Square.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-570">
-          <caret line="6" column="40" lean-forward="true" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DMUI_ChessBoard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="73" column="25" lean-forward="true" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
+        <state relative-caret-position="-394">
+          <caret line="73" column="25" lean-forward="false" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
@@ -772,11 +726,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-819">
+          <caret line="7" column="29" lean-forward="true" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DMUI_Square.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="6" column="40" lean-forward="false" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/DMChess.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-649">
-          <caret line="118" column="26" lean-forward="true" selection-start-line="118" selection-start-column="26" selection-end-line="118" selection-end-column="26" />
+        <state relative-caret-position="12114">
+          <caret line="829" column="58" lean-forward="true" selection-start-line="829" selection-start-column="58" selection-end-line="829" selection-end-column="58" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DMUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1869">
+          <caret line="131" column="56" lean-forward="false" selection-start-line="131" selection-start-column="56" selection-end-line="131" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

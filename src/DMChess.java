@@ -120,6 +120,16 @@ public class DMChess {
 //            turn = 1 - turn;
 //        }
 //    }
+//        drawBoard();
+//        String move = "";
+//        for (int i = 0; i < 64; i++){
+//            if ("A".equals(Board[i/8][i%8])){
+//                move = move + moveKing(i);
+//            }
+//        }
+//        System.out.println(move);
+//    }
+
     public static String alphabeta(int depth, int alpha, int beta, String move, int player){
         String list = movePieces();
         player = 1 - player;
