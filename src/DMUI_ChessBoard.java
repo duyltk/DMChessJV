@@ -1,9 +1,10 @@
 /**
  * Created by bigzero on 6/19/17.
  */
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.concurrent.*;
+import javafx.event.*;
 
 public class DMUI_ChessBoard extends GridPane{
     public DMUI_Square[][] Square = new DMUI_Square[8][8];
@@ -11,7 +12,7 @@ public class DMUI_ChessBoard extends GridPane{
     public DMUI_Square activeSquare = null;
     String ListMove = "";
 
-    public DMUI_ChessBoard()
+    public DMUI_ChessBoard(boolean playerIsWhite)
     {
         super();
 
@@ -24,11 +25,51 @@ public class DMUI_ChessBoard extends GridPane{
                 final int xVal = x;
                 final int yVal = y;
 
-                Square[x][y].setOnAction( e -> onSpaceClick(xVal, yVal) );
+                try {
+                    Square[x][y].setOnAction(e -> onSpaceClick(xVal, yVal));
+                }catch(Exception e){}
+            }
+        }
+        if (!DMUI.getPlayerWhite()) {
+            waitThread();
+        }
+    }
+    public void waitThread(){
+        Task<Void> sleeper = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                }
+                return null;
+            }
+        };
+        sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent event) {
+                runAI();
+            }
+        });
+        new Thread(sleeper).start();
+    }
+
+    public void runAI()
+    {
+        if (!DMUI.getPlayerWhite()){
+            String move = DMChess.alphabeta(DMChess.globalDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, "", 0);
+            DMChess.applyMove(move.substring(0, 5));
+        }
+        else {
+            String move = DMChess.alphabeta(DMChess.globalDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, "", 1);
+            DMChess.applyMove(move.substring(0, 5));
+        }
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                Square[x][y].setPathGraphic();
             }
         }
     }
-
     public void onSpaceClick(int x, int y)
     {
         if (Character.isLowerCase(Square[x][y].piece.charAt(0)))
@@ -122,7 +163,6 @@ public class DMUI_ChessBoard extends GridPane{
                         Square[x][y].setPathGraphic();
                         Square[updateKing][0].setPathGraphic();
                         Square[updateRook][0].setPathGraphic();
-
                         flagClick = false;
                     }
                 }
@@ -145,6 +185,8 @@ public class DMUI_ChessBoard extends GridPane{
                         Square[x][y].setPathGraphic();
                         DMChess.drawBoard();
                         flagClick = false;
+
+                        waitThread();
                     }
                 }
             }

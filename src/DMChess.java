@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 /**
  * Created by bigzero on 6/18/17.
  */
@@ -134,7 +132,7 @@ public class DMChess {
         String list = movePieces();
         player = 1 - player;
         if (depth == 0 || list.length() == 0) return move + (evaluation(list.length(), depth) * (player * 2 - 1));
-        //list = sortMove(list);
+        list = sortMove(list);
         for(int i = 0; i < list.length(); i+=5){
             node++;
             applyMove(list.substring(i, i + 5));

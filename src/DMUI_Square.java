@@ -24,6 +24,7 @@ public class DMUI_Square extends Button{
         setPathGraphic();
 
     }
+
     public void setPathGraphic(){
         piece = DMChess.Board[y][x];
 
@@ -33,12 +34,20 @@ public class DMUI_Square extends Button{
         {
             if (Character.isLowerCase(piece.charAt(0)))
             {
-                pathImgPiece = pathImgPiece +  "black_";
+                if (DMUI.getPlayerWhite())
+                    pathImgPiece = pathImgPiece +  "white_";
+                else
+                    pathImgPiece = pathImgPiece + "black_";
+
             }
             else
             {
-                pathImgPiece = pathImgPiece + "white_";
+                if (DMUI.getPlayerWhite())
+                    pathImgPiece = pathImgPiece +  "black_";
+                else
+                    pathImgPiece = pathImgPiece + "white_";
             }
+
             String tempPiece = piece;
             switch (tempPiece.toLowerCase())
             {
