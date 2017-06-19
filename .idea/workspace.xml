@@ -16,20 +16,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="DMChess.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DMChess.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DMChess.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="13" column="43" lean-forward="false" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
+            <state relative-caret-position="189">
+              <caret line="135" column="103" lean-forward="false" selection-start-line="135" selection-start-column="97" selection-end-line="135" selection-end-column="103" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DMUI.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DMUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DMUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
+            <state relative-caret-position="105">
               <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding />
             </state>
@@ -39,13 +39,13 @@
       <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="14511">
-              <caret line="711" column="16" lean-forward="false" selection-start-line="711" selection-start-column="16" selection-end-line="711" selection-end-column="16" />
+            <state relative-caret-position="301">
+              <caret line="698" column="16" lean-forward="false" selection-start-line="698" selection-start-column="16" selection-end-line="698" selection-end-column="16" />
               <folding>
-                <marker date="1497896746791" expanded="true" signature="39208:39433" ph="..." />
-                <marker date="1497896746791" expanded="true" signature="39208:39446" ph="..." />
-                <marker date="1497896746791" expanded="true" signature="39208:39461" ph="..." />
-                <marker date="1497896746791" expanded="true" signature="39209:39415" ph="..." />
+                <marker date="1497896818895" expanded="true" signature="39383:39425" ph="..." />
+                <marker date="1497896818895" expanded="true" signature="39383:39443" ph="..." />
+                <marker date="1497896818895" expanded="true" signature="39383:39456" ph="..." />
+                <marker date="1497896818895" expanded="true" signature="39383:39471" ph="..." />
               </folding>
             </state>
           </provider>
@@ -501,10 +501,10 @@
         <state relative-caret-position="14301">
           <caret line="681" column="16" lean-forward="true" selection-start-line="681" selection-start-column="16" selection-end-line="681" selection-end-column="16" />
           <folding>
-            <marker date="1497896746791" expanded="true" signature="39208:39433" ph="..." />
-            <marker date="1497896746791" expanded="true" signature="39208:39446" ph="..." />
-            <marker date="1497896746791" expanded="true" signature="39208:39461" ph="..." />
-            <marker date="1497896746791" expanded="true" signature="39209:39415" ph="..." />
+            <marker date="1497896818895" expanded="true" signature="39383:39425" ph="..." />
+            <marker date="1497896818895" expanded="true" signature="39383:39443" ph="..." />
+            <marker date="1497896818895" expanded="true" signature="39383:39456" ph="..." />
+            <marker date="1497896818895" expanded="true" signature="39383:39471" ph="..." />
           </folding>
         </state>
       </provider>
@@ -538,10 +538,10 @@
         <state relative-caret-position="13986">
           <caret line="666" column="12" lean-forward="true" selection-start-line="666" selection-start-column="12" selection-end-line="666" selection-end-column="12" />
           <folding>
-            <marker date="1497896746791" expanded="true" signature="39208:39433" ph="..." />
-            <marker date="1497896746791" expanded="true" signature="39208:39446" ph="..." />
-            <marker date="1497896746791" expanded="true" signature="39208:39461" ph="..." />
-            <marker date="1497896746791" expanded="true" signature="39209:39415" ph="..." />
+            <marker date="1497896818895" expanded="true" signature="39383:39425" ph="..." />
+            <marker date="1497896818895" expanded="true" signature="39383:39443" ph="..." />
+            <marker date="1497896818895" expanded="true" signature="39383:39456" ph="..." />
+            <marker date="1497896818895" expanded="true" signature="39383:39471" ph="..." />
           </folding>
         </state>
       </provider>
@@ -691,31 +691,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/DMUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14511">
-          <caret line="711" column="16" lean-forward="false" selection-start-line="711" selection-start-column="16" selection-end-line="711" selection-end-column="16" />
+        <state relative-caret-position="301">
+          <caret line="698" column="16" lean-forward="false" selection-start-line="698" selection-start-column="16" selection-end-line="698" selection-end-column="16" />
           <folding>
-            <marker date="1497896746791" expanded="true" signature="39208:39433" ph="..." />
-            <marker date="1497896746791" expanded="true" signature="39208:39446" ph="..." />
-            <marker date="1497896746791" expanded="true" signature="39208:39461" ph="..." />
-            <marker date="1497896746791" expanded="true" signature="39209:39415" ph="..." />
+            <marker date="1497896818895" expanded="true" signature="39383:39425" ph="..." />
+            <marker date="1497896818895" expanded="true" signature="39383:39443" ph="..." />
+            <marker date="1497896818895" expanded="true" signature="39383:39456" ph="..." />
+            <marker date="1497896818895" expanded="true" signature="39383:39471" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DMChess.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="13" column="43" lean-forward="false" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DMUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state relative-caret-position="189">
+          <caret line="135" column="103" lean-forward="false" selection-start-line="135" selection-start-column="97" selection-end-line="135" selection-end-column="103" />
           <folding />
         </state>
       </provider>
