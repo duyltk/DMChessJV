@@ -132,6 +132,33 @@ public class DMChess {
     public static int rating(){
         return 0;
     }
+//    public static int evaluation(){
+//        int score = 0;
+//        score += evaluationAttack();
+//        score += evaluationMaterial();
+//        score += evaluationPosition();
+//        score += evaluationMove();
+//        flipBoard();
+//        score -= evaluationAttack();
+//        score -= evaluationMaterial();
+//        score -= evaluationPosition();
+//        score -= evaluationMove();
+//        return scrore;
+//    }
+//    public static int evaluationAttack(){
+//        //who is attack who
+//        return 0;
+//    }
+//    public static int evaluationPosition(){
+//
+//        return 0;
+//    }
+//    public static int evaluationMove(){
+//        return 0;
+//    }
+//    public static int evaluationMaterial(){
+//        return 0;
+//    }
     public static void drawBoard(){
         for(int i = 0; i < 8; i++){
             for (int j = 0; j < 8; j ++)
