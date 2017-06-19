@@ -87,6 +87,7 @@ public class DMChess {
 //    static boolean castlingLShort = true;
 //    static boolean castlingLLong = true;
 
+
     public static void main(String[] args) {
 //        Scanner scan = new Scanner(System.in);
 //        int turn = 0; // 0 : computer turn, 1: human turn
