@@ -41,18 +41,55 @@ public class DMUI extends Application
         mainStage.setScene(mainScene);
 
         mainScene.getStylesheets().add("image/stylesheet.css");
+        MenuBar menuBar = generateMenuBar();
+        root.setTop(menuBar);
 
         chooseTypePlayer();
 
         board = new DMUI_ChessBoard(playerIsWhite);
         root.setCenter(board); // sized 400x400
 
-        MenuBar menuBar = generateMenuBar();
-        root.setTop(menuBar);
-
         mainStage.show();
     }
 
+    public static int choosePromoted(){
+        int select;
+        Alert newGameAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        newGameAlert.setTitle("Select promoted - DMChessAI");
+        newGameAlert.setHeaderText(null);
+
+        Image image = new Image("image/icons/about.png");
+        ImageView imageView = new ImageView(image);
+        newGameAlert.setGraphic(imageView);
+        newGameAlert.setContentText("Choose piece promote: ");
+
+        ButtonType buttonTypeQueen = new ButtonType("Queen");
+        ButtonType buttonTypeRook = new ButtonType("Rook");
+        ButtonType buttonTypeBiShop = new ButtonType("Bishop");
+        ButtonType buttonTypeKnight = new ButtonType("Knight");
+
+        newGameAlert.getButtonTypes().setAll(buttonTypeQueen, buttonTypeRook, buttonTypeKnight, buttonTypeBiShop);
+        Optional<ButtonType> result = newGameAlert.showAndWait();
+
+
+        if (result.get() == buttonTypeQueen)
+        {
+            select = 0;
+        }
+        else if (result.get() == buttonTypeRook)
+        {
+            select = 1;
+        }
+        else if (result.get() == buttonTypeKnight)
+        {
+            select = 2;
+        }
+        else
+        {
+            select = 3;
+        }
+        return select;
+    }
 
     public void chooseTypePlayer()
     {
@@ -64,8 +101,6 @@ public class DMUI extends Application
         ImageView imageView = new ImageView(image);
         newGameAlert.setGraphic(imageView);
         newGameAlert.setContentText("Choose type: ");
-
-
 
         ButtonType buttonTypeWhite = new ButtonType("White");
         ButtonType buttonTypeBlack = new ButtonType("Black");
@@ -81,6 +116,26 @@ public class DMUI extends Application
         {
             this.playerIsWhite = false;
         }
+    }
+    public static void endGame(boolean peopleWin)
+    {
+        Alert newGameAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        newGameAlert.setTitle("End game - DMChessAI");
+        newGameAlert.setHeaderText(null);
+
+        Image image = new Image("image/icons/about.png");
+        ImageView imageView = new ImageView(image);
+        newGameAlert.setGraphic(imageView);
+        if (peopleWin)
+            newGameAlert.setContentText("YOU WIN");
+        else
+            newGameAlert.setContentText("COMPUTER WIN");
+
+        ButtonType buttonTypeQueen = new ButtonType("EXIT");
+
+        newGameAlert.getButtonTypes().setAll(buttonTypeQueen);
+        Optional<ButtonType> result = newGameAlert.showAndWait();
+
     }
     private MenuBar generateMenuBar()
     {
@@ -126,7 +181,7 @@ public class DMUI extends Application
 
         infoAlert.setContentText("Programmed by DMTeam.\n\n" +
                 "Programming based on:\n" + "Java & JavaFX Software\n" +
-                "1. DUY Le Trinh Khanh \n2.MINH Quang Thai");
+                "1. DUY Le Trinh Khanh \n2.MINH Quang Thai\nOpen Source: https://github.com/duyltk/DMChessJV");
         infoAlert.showAndWait();
     }
 }

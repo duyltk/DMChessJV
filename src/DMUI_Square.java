@@ -74,6 +74,11 @@ public class DMUI_Square extends Button{
         }
         else {
             this.setGraphic( new ImageView ());
+            this.getStyleClass().removeAll("chess-space-active");
+            this.getStyleClass().removeAll("chess-space-hover-light");
+            this.getStyleClass().removeAll("chess-space-hover-dark");
+
+
         }
     }
 }

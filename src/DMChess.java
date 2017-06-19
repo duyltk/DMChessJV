@@ -77,7 +77,7 @@ public class DMChess {
             {-50,-30,-30,-30,-30,-30,-30,-50}};
 
     static int node = 0;
-    static int globalDepth = 5;
+    static int globalDepth = 2;
     static int kingPositionU = 0;
     static int kingPositionL = 0;
     static boolean castlingUShort = true;
@@ -86,7 +86,7 @@ public class DMChess {
     static boolean castlingLLong = true;
 
 
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
 //        Scanner scan = new Scanner(System.in);
 //        int turn = 0; // 0 : computer turn, 1: human turn
 //        while (movePieces().length() != 0) {
@@ -119,7 +119,7 @@ public class DMChess {
 //            flipBoard();
 //            turn = 1 - turn;
 //        }
-    }
+//    }
     public static String alphabeta(int depth, int alpha, int beta, String move, int player){
         String list = movePieces();
         player = 1 - player;
@@ -147,7 +147,6 @@ public class DMChess {
         if (player == 0) return (move + beta);
         else return (move + alpha);
     }
-
 
     public static void drawBoard(){
         for(int i = 0; i < 8; i++){
@@ -187,6 +186,9 @@ public class DMChess {
                 continue;
             switch (Board[position / 8][position % 8])
             {
+                case "A":
+                    List = List + moveKing(position);
+                    break;
                 case "P":
                     List = List + movePawn(position);
                     break;
@@ -202,9 +204,7 @@ public class DMChess {
                 case "Q":
                     List = List + moveQueen(position);
                     break;
-                case "A":
-                    List = List + moveKing(position);
-                    break;
+
             }
         }
         return List;
@@ -345,6 +345,14 @@ public class DMChess {
         return list;
     }
     public static boolean safeKing(){
+        for (int i = 0; i < 64; i++) {
+            if ("A".equals(Board[i / 8][i % 8])) {
+                kingPositionU = i;
+            }
+            if ("a".equals(Board[i / 8][i % 8])) {
+                kingPositionL = i;
+            }
+        }
         int distance = 1;
         int rowKing = kingPositionU / 8;
         int colKing = kingPositionU % 8;
@@ -707,13 +715,13 @@ public class DMChess {
             }
         }
         kingPositionU = temp;
-        if (!safeKing()) score-=400;
+        if (!safeKing()) score -= 300;
         return score / 2;
     }
 
     public static int evalMobility(int length, int depth){
         int score = 0;
-        score+= length * 15; // each move * 5 * 15
+        score+= length * 15; //  each move * 5 * 15
         if (length == 0){ //checkmate or stalemate
             if (!safeKing()){
                 score-= 200000 * depth;
