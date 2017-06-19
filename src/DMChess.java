@@ -83,23 +83,24 @@ public class DMChess {
     static Boolean castlingLShort = true;
     static Boolean castlingLLong = true;
 
-    public static void main(String[] args) {
-
-        drawBoard();
-        String move = "";
-        for(int i = 0; i < 64; i++) {
-            if ("A".equals(Board[i/8][i%8])){
-                kingPositionU = i;
-            }
-            if ("a".equals(Board[i/8][i%8])){
-                kingPositionL = i;
-            }
-        }
-        //System.out.print(movePieces());
-        flipBoard();
-        drawBoard();
-
-    }
+//    public static void main(String[] args) {
+//
+////
+////        drawBoard();
+////        String move = "";
+////        for(int i = 0; i < 64; i++) {
+////            if ("A".equals(Board[i/8][i%8])){
+////                kingPositionU = i;
+////            }
+////            if ("a".equals(Board[i/8][i%8])){
+////                kingPositionL = i;
+////            }
+////        }
+////        //System.out.print(movePieces());
+////        flipBoard();
+////        drawBoard();
+//
+//    }
     public static void drawBoard(){
         for(int i = 0; i < 8; i++){
             for (int j = 0; j < 8; j ++)
@@ -607,5 +608,69 @@ public class DMChess {
                 kingPositionU = Character.getNumericValue(Move.charAt(0)) * 8 + Character.getNumericValue(Move.charAt(1));
             }
         }
+    }
+    public static int scoreMaterial() {
+        int score = 0;
+        int countBishop = 0;
+        for (int position = 0 ; position < 64; position++) {
+            if (!" ".equals(Board[position /8 ][ position % 8])) {
+                switch (Board[position / 8][position % 8]) {
+                    case "P":
+                        score += 100;
+                        break;
+                    case "R":
+                        score += 500;
+                        break;
+                    case "K":
+                        score += 300;
+                        break;
+                    case "B":
+                        score += 250;
+                        break;
+                    case "Q":
+                        score += 900;
+                        break;
+                }
+            }
+        }
+        if (countBishop > 1) score = 50 * countBishop;
+        return score * 7;
+    }
+    public static int scorePositional(int material) {
+        int score = 0, row, col;
+        for (int position=0; position < 64; position++) {
+            row = position / 8;
+            col = position % 8;
+            if (!" ".equals(Board[row][col])) {
+                switch (Board[row][col]) {
+                    case "P":
+                        score += BoardPawn[row][col];
+                        break;
+                    case "R":
+                        score += BoardRook[row][col];
+                        break;
+                    case "K":
+                        score += BoardKnight[row][col];
+                        break;
+                    case "B":
+                        score += BoardBishop[row][col];
+                        break;
+                    case "Q":
+                        score += BoardQueen[row][col];
+                        break;
+                    case "A":
+                        if (material >= 1750) {
+                            score += BoardKingMid[row][col];
+                            score += moveKing(kingPositionU).length() * 10;
+                        }
+                        else {
+                            score += BoardKingEnd[row][col];
+                            score += moveKing(kingPositionU).length()*30;
+                        }
+                        break;
+                }
+            }
+        }
+        return score;
     }
 }
