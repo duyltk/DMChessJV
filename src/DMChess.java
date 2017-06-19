@@ -11,8 +11,8 @@ public class DMChess {
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
-            {"P","P","P","P","P","P","P","P"},
-            {"R","K","B","Q","A","B","K","R"}
+            {" "," "," "," "," "," "," "," "},
+            {"R"," "," "," ","A"," "," ","R"}
     };
     static int BoardPawn[][]={
             { 0,  0,  0,  0,  0,  0,  0,  0},
@@ -120,6 +120,14 @@ public class DMChess {
 //            flipBoard();
 //            turn = 1 - turn;
 //        }
+//        drawBoard();
+//        String move = "";
+//        for (int i = 0; i < 64; i++){
+//            if ("A".equals(Board[i/8][i%8])){
+//                move = move + moveKing(i);
+//            }
+//        }
+//        System.out.println(move);
     }
     public static String alphabeta(int depth, int alpha, int beta, String move, int player){
         String list = movePieces();
