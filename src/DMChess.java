@@ -8,8 +8,8 @@ public class DMChess {
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
-            {" "," "," "," "," "," "," ","P"},
-            {"P","P","P","P","P","P","P"," "},
+            {" "," "," "," "," "," "," "," "},
+            {"P","P","P","P","P","P","P","P"},
             {"R","K","B","Q","A","B","K","R"}
     };
     static int BoardPawn[][]={
@@ -76,6 +76,8 @@ public class DMChess {
             {-30,-30,  0,  0,  0,  0,-30,-30},
             {-50,-30,-30,-30,-30,-30,-30,-50}};
 
+    static int node = 0;
+    static int globalDepth = 4;
     static int kingPositionU = 0;
     static int kingPositionL = 0;
     static Boolean castlingUShort = true;
@@ -83,24 +85,53 @@ public class DMChess {
     static Boolean castlingLShort = true;
     static Boolean castlingLLong = true;
 
-//    public static void main(String[] args) {
-//
-////
-////        drawBoard();
-////        String move = "";
-////        for(int i = 0; i < 64; i++) {
-////            if ("A".equals(Board[i/8][i%8])){
-////                kingPositionU = i;
-////            }
-////            if ("a".equals(Board[i/8][i%8])){
-////                kingPositionL = i;
-////            }
-////        }
-////        //System.out.print(movePieces());
-////        flipBoard();
-////        drawBoard();
-//
-//    }
+    public static void main(String[] args) {
+
+        drawBoard();
+        String move = "";
+        for(int i = 0; i < 64; i++) {
+            if ("A".equals(Board[i/8][i%8])){
+                kingPositionU = i;
+            }
+            if ("a".equals(Board[i/8][i%8])){
+                kingPositionL = i;
+            }
+        }
+        System.out.print(movePieces());
+        System.out.println();
+        System.out.print(minimax(globalDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, "", 0));
+        System.out.println();
+        System.out.print(node);
+    }
+    public static String minimax(int depth, int alpha, int beta, String move, int player){
+        String list = movePieces();
+        if (depth == 0 || list.length() == 0) return move + rating();
+        player = 1 - player;
+        for(int i = 0; i < list.length(); i+=5){
+            node++;
+            applyMove(list.substring(i, i + 5));
+            flipBoard();
+            String returnString = minimax(depth - 1, alpha, beta, list.substring(i, i+ 5), player);
+            flipBoard();
+            undoMove(list.substring(i, i + 5));
+            int value = Integer.parseInt(returnString.substring(5, returnString.length()));
+            if (player == 0) {
+                if (value < beta){ beta = value; if (depth == globalDepth) {move = returnString.substring(0, 5);}}
+            }
+            else{
+                if (value > alpha) {alpha = value; if (depth == globalDepth) {move = returnString.substring(0,5);}}
+            }
+            if (alpha >= beta) {
+                if (player == 0) return (move + beta);
+                else return (move + alpha);
+            }
+        }
+        if (player == 0) return (move + beta);
+        else return (move + alpha);
+    }
+    public static int rating(){
+        return 0;
+    }
     public static void drawBoard(){
         for(int i = 0; i < 8; i++){
             for (int j = 0; j < 8; j ++)
