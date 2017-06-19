@@ -85,24 +85,24 @@ public class DMChess {
     static Boolean castlingLShort = true;
     static Boolean castlingLLong = true;
 
-    public static void main(String[] args) {
-
-        drawBoard();
-        String move = "";
-        for(int i = 0; i < 64; i++) {
-            if ("A".equals(Board[i/8][i%8])){
-                kingPositionU = i;
-            }
-            if ("a".equals(Board[i/8][i%8])){
-                kingPositionL = i;
-            }
-        }
-        System.out.print(movePieces());
-        System.out.println();
-        System.out.print(minimax(globalDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, "", 0));
-        System.out.println();
-        System.out.print(node);
-    }
+//    public static void main(String[] args) {
+//
+//        drawBoard();
+//        String move = "";
+//        for(int i = 0; i < 64; i++) {
+//            if ("A".equals(Board[i/8][i%8])){
+//                kingPositionU = i;
+//            }
+//            if ("a".equals(Board[i/8][i%8])){
+//                kingPositionL = i;
+//            }
+//        }
+//        System.out.print(movePieces());
+//        System.out.println();
+//        System.out.print(minimax(globalDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, "", 0));
+//        System.out.println();
+//        System.out.print(node);
+//    }
     public static String minimax(int depth, int alpha, int beta, String move, int player){
         String list = movePieces();
         if (depth == 0 || list.length() == 0) return move + rating();
