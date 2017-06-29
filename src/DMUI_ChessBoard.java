@@ -1,10 +1,10 @@
 /**
  * Created by bigzero on 6/19/17.
  */
-import javafx.scene.image.ImageView;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.scene.layout.GridPane;
-import javafx.concurrent.*;
-import javafx.event.*;
 
 public class DMUI_ChessBoard extends GridPane{
     public DMUI_Square[][] Square = new DMUI_Square[8][8];
@@ -56,22 +56,32 @@ public class DMUI_ChessBoard extends GridPane{
 
     public void runAI()
     {
-        if (!DMUI.getPlayerWhite()){
-            String move = DMChess.alphabeta(DMChess.globalDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, "", 0);
-            DMChess.applyMove(move.substring(0, 5));
+        if (DMChess.movePieces().length() == 0) {
+            DMUI.endGame(true);
+            return;
         }
-        else {
-            String move = DMChess.alphabeta(DMChess.globalDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, "", 1);
-            DMChess.applyMove(move.substring(0, 5));
-        }
+
+        String move = DMChess.alphabeta(DMChess.globalDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, "", 0);
+        DMChess.applyMove(move.substring(0, 5));
+
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
                 Square[x][y].setPathGraphic();
             }
         }
+        DMChess.flipBoard();
+        if(DMChess.movePieces().length() == 0)
+        {
+
+            DMUI.endGame(false);
+        }
+        DMChess.flipBoard();
     }
+
+
     public void onSpaceClick(int x, int y)
     {
+
         if (Character.isLowerCase(Square[x][y].piece.charAt(0)))
         {
             if (!flagClick)
@@ -107,7 +117,7 @@ public class DMUI_ChessBoard extends GridPane{
 
                 for (int i = 0; i < ListMove.length(); i+=5)
                 {
-                    if (ListMove.charAt(i + 4) != 'C'){
+                    if (ListMove.charAt(i + 4) != 'C' && ListMove.charAt(i + 4) != 'P'){
                         int col = 7-Integer.parseInt(String.valueOf(ListMove.charAt(i + 3)));
                         int row = 7-Integer.parseInt(String.valueOf(ListMove.charAt(i + 2)));
 
@@ -116,17 +126,25 @@ public class DMUI_ChessBoard extends GridPane{
                         else
                             Square[col][row].getStyleClass().add("chess-space-hover-dark");
                     }
-                    else {
+                    else if(ListMove.charAt(i + 4) == 'C'){
                         //Colume Previous King, Rook => Next King, Rook
                         int colRook = 7-Integer.parseInt(String.valueOf(ListMove.charAt(i + 1)));
-                        int colKing = 7-Integer.parseInt(String.valueOf(ListMove.charAt(i)));
 
                         if (colRook % 2 == 0){
-                            Square[colKing][0].getStyleClass().add("chess-space-hover-dark");
+                            Square[colRook][0].getStyleClass().add("chess-space-hover-dark");
                         }
                         else
                             Square[colRook][0].getStyleClass().add("chess-space-hover-light");
 
+                    } else
+                    {
+                        int nextcol = 7-Integer.parseInt(String.valueOf(ListMove.charAt(i + 1)));
+
+                        if (nextcol % 2 == 0){
+                            Square[nextcol][7].getStyleClass().add("chess-space-hover-dark");
+                        }
+                        else
+                            Square[nextcol][7].getStyleClass().add("chess-space-hover-light");
                     }
                 }
             }
@@ -141,49 +159,77 @@ public class DMUI_ChessBoard extends GridPane{
                 else if(Square[x][y].piece.equals("r") && activeSquare.piece.equals("a")){
                     int updateRook = 0, updateKing = 0;
                     String applyMoveKing = "";
-                    if (x == 0) {
-                        if (DMChess.castlingLLong) {
-                            applyMoveKing = "3754C";
-                            updateRook = 2;
-                            updateKing = 3;
+                    for (int i = 0; i < ListMove.length(); i+=5){
+                        applyMoveKing = ListMove.substring(i, i + 5);
+                        if (applyMoveKing.charAt(4) == 'C' && (7-x) == Integer.parseInt(String.valueOf(applyMoveKing.charAt(i + 1))))
+                        {
+                            DMChess.flipBoard();
+                            DMChess.applyMove(applyMoveKing);
+                            DMChess.flipBoard();
+
+                            for (int k = 0; k < 8; k++) {
+                                for (int l = 0; l < 8; l++) {
+                                    Square[k][l].setPathGraphic();
+                                }
+                            }
+                            flagClick = false;
+                            waitThread();
                         }
-                    } else {
-                        if (DMChess.castlingLShort){
-                            applyMoveKing = "3012C";
-                            updateRook = 5;
-                            updateKing = 6;
-                        }
-                    }
-                    if (applyMoveKing.length() != 0){
-                        DMChess.flipBoard();
-                        DMChess.applyMove(applyMoveKing);
-                        DMChess.flipBoard();
-                        DMChess.drawBoard();
-                        activeSquare.setPathGraphic();
-                        Square[x][y].setPathGraphic();
-                        Square[updateKing][0].setPathGraphic();
-                        Square[updateRook][0].setPathGraphic();
-                        flagClick = false;
                     }
                 }
             }
         }
         else {
             if (flagClick){
+                boolean flagPromote = false;
                 for (int i = 0; i < ListMove.length(); i+= 5)
                 {
+                    if(ListMove.charAt(i + 4) == 'P')
+                    {
+                        if (flagPromote)
+                            continue;
+                        if((7-x) == Integer.parseInt(String.valueOf(ListMove.charAt(i + 1)))){
+                            flagPromote = true;
+                            int select_Promoted = DMUI.choosePromoted();
+                            String temp[] = {"Q", "R", "K", "B"};
+                            DMChess.flipBoard();
+                            DMChess.applyMove(ListMove.substring(i, i + 3) + temp[select_Promoted] + "P");
+                            DMChess.flipBoard();
+
+
+                            for (int k = 0; k < 8; k++) {
+                                for (int l = 0; l < 8; l++) {
+                                    Square[k][l].setPathGraphic();
+                                }
+                            }
+                            flagClick = false;
+                            waitThread();
+                        }
+                        continue;
+                    }
                     int col = 7-Integer.parseInt(String.valueOf(ListMove.charAt(i + 3)));
                     int row = 7-Integer.parseInt(String.valueOf(ListMove.charAt(i + 2)));
                     if (x == col && y == row){
+                        if (activeSquare.piece == "r"){
+                            if (activeSquare.getX() == 7){
+                                DMChess.castlingLLong = false;
+                            }
+                            else
+                                DMChess.castlingLShort = false;
+                        }
+                        else if (activeSquare.piece == "r"){
+                            DMChess.castlingLLong = false;
+                            DMChess.castlingLShort = false;
+                        }
                         DMChess.flipBoard();
                         DMChess.applyMove(ListMove.substring(i, i + 5));
                         DMChess.flipBoard();
-                        activeSquare.setGraphic(new ImageView());
-                        activeSquare.getStyleClass().removeAll("chess-space-active");
-                        Square[x][y].piece = activeSquare.piece;
-                        activeSquare.piece = " ";
-                        Square[x][y].setPathGraphic();
-                        DMChess.drawBoard();
+
+                        for (int k = 0; k < 8; k++) {
+                            for (int l = 0; l < 8; l++) {
+                                Square[k][l].setPathGraphic();
+                            }
+                        }
                         flagClick = false;
 
                         waitThread();
@@ -203,4 +249,5 @@ public class DMUI_ChessBoard extends GridPane{
             }
         }
     }
+
 }
