@@ -61,7 +61,7 @@ public class DMUI_ChessBoard extends GridPane{
             return;
         }
 
-        String move = DMChess.alphabeta(DMChess.globalDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, "", 0);
+        String move = DMChess.alphabeta(DMChess.globalDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, "", 1);
         DMChess.applyMove(move.substring(0, 5));
 
         for (int x = 0; x < 8; x++) {

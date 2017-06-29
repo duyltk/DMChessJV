@@ -77,7 +77,7 @@ public class DMChess {
             {-50,-30,-30,-30,-30,-30,-30,-50}};
 
     static int node = 0;
-    static int globalDepth = 4;
+    static int globalDepth = 5;
     static int kingPositionU = 0;
     static int kingPositionL = 0;
     static boolean castlingUShort = true;
@@ -86,89 +86,26 @@ public class DMChess {
     static boolean castlingLLong = true;
 
 
-//    public static void main(String[] args) {
-//        Scanner scan = new Scanner(System.in);
-//        int turn = 0; // 0 : computer turn, 1: human turn
-//        while (movePieces().length() != 0) {
-//            String move = "";
-//            if (turn == 0) {
-//                for (int i = 0; i < 64; i++) {
-//                    if ("A".equals(Board[i / 8][i % 8])) {
-//                        kingPositionU = i;
-//                    }
-//                    if ("a".equals(Board[i / 8][i % 8])) {
-//                        kingPositionL = i;
-//                    }
-//                }
-//                //System.out.println(movePieces());
-//                move = alphabeta(globalDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, "", 0);
-//                //System.out.println("Move: " + move);
-//                //System.out.println("Number of node:" + node);
-//                applyMove(move.substring(0, 5));
-//            }
-//            else{
-//                drawBoard();
-//                System.out.print("Your move: ");
-//                move = scan.next();
-//                if (move.length() == 4){
-//                    move = move + " ";
-//                }
-//                applyMove(move);
-//            }
-//
-//            flipBoard();
-//            turn = 1 - turn;
-//        }
-<<<<<<< HEAD
-//        for (int i = 0; i < 64; i++) {
-//                    if ("A".equals(Board[i / 8][i % 8])) {
-//                        kingPositionU = i;
-//                    }
-//                    if ("a".equals(Board[i / 8][i % 8])) {
-//                        kingPositionL = i;
-//                    }
-//        }
-        drawBoard();
-        String move = "";
-        move = movePieces();
-        //move = alphabeta(5, Integer.MIN_VALUE, Integer.MAX_VALUE, "", 0);
-        System.out.println(safeKing());
-        //System.out.println(move);
-        System.out.println(node);
+   public static void main(String[] args) {
+
 
     }
-=======
-//    }
-//        drawBoard();
-//        String move = "";
-//        for (int i = 0; i < 64; i++){
-//            if ("A".equals(Board[i/8][i%8])){
-//                move = move + moveKing(i);
-//            }
-//        }
-//        System.out.println(move);
-//    }
 
->>>>>>> 9bf45c10ce101f45cde4ea581ef48bb9ff1efca4
     public static String alphabeta(int depth, int alpha, int beta, String move, int player){
         String list = movePieces();
-        player = 1 - player;
         if (depth == 0 || list.length() == 0) return move + (evaluation(list.length(), depth) * (player * 2 - 1));
         list = sortMove(list);
         for(int i = 0; i < list.length(); i+=5){
             node++;
             applyMove(list.substring(i, i + 5));
             flipBoard();
-            String returnString = alphabeta(depth - 1, alpha, beta, list.substring(i, i+ 5), player);
+            String returnString = alphabeta(depth - 1, alpha, beta, list.substring(i, i+ 5), 1 - player);
             flipBoard();
             undoMove(list.substring(i, i + 5));
             int value = Integer.parseInt(returnString.substring(5, returnString.length()));
             if (player == 0) {
-                if (value < beta){
+                if (value <= beta){
                     beta = value;
-                    if (depth == globalDepth) {
-                        move = list.substring(i, i+ 5);
-                    }
                 }
             }
             else{
@@ -384,14 +321,6 @@ public class DMChess {
         return list;
     }
     public static boolean safeKing(){
-        for (int i = 0; i < 64; i++) {
-            if ("A".equals(Board[i / 8][i % 8])) {
-                kingPositionU = i;
-            }
-            if ("a".equals(Board[i / 8][i % 8])) {
-                kingPositionL = i;
-            }
-        }
         int distance = 1;
         int rowKing = kingPositionU / 8;
         int colKing = kingPositionU % 8;
@@ -754,7 +683,7 @@ public class DMChess {
             }
         }
         kingPositionU = temp;
-        if (!safeKing()) score -= 300;
+        if (!safeKing()) score -= 400;
         return score / 2;
     }
 
@@ -790,12 +719,12 @@ public class DMChess {
                         score += 250;
                         break;
                     case "Q":
-                        score += 900;
+                        score += 1000;
                         break;
                 }
             }
         }
-        if (countBishop > 1) score = 50 * countBishop;
+        if (countBishop > 1) score += 50 * countBishop;
         return score * 7;
     }
     public static int evalPositional(int material) {
@@ -821,7 +750,7 @@ public class DMChess {
                         score += BoardQueen[row][col];
                         break;
                     case "A":
-                        if (material >= 1800) {
+                        if (material >= 1750) {
                             score += BoardKingMid[row][col];
                             score += moveKing(kingPositionU).length() * 10;
                         }
@@ -842,14 +771,6 @@ public class DMChess {
             score[i/5] = evaluation(-1, 0);
             undoMove(list.substring(i, i+5));
         }
-
-//        for(int i = 0; i < list.length(); i+=5){
-//            applyMove(list.substring(i, i+5));
-//            flipBoard();
-//            score[i/5] = evaluation(movePieces().length(), 0);
-//            flipBoard();
-//            undoMove(list.substring(i, i+5));
-//        }
         String newlista ="", newlistb=list;
         // just few moves of length is sorted, if number of move > 50
         // then we only sort first 50 move
