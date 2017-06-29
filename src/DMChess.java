@@ -10,7 +10,7 @@ public class DMChess {
             {" "," "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "," "},
             {"P","P","P","P","P","P","P","P"},
-            {"R","K","B","Q","A","B","K","R"}
+            {"R","K","B","Q","A","K","K","R"}
     };
     static int BoardPawn[][]={
             { 0,  0,  0,  0,  0,  0,  0,  0},
@@ -119,14 +119,22 @@ public class DMChess {
 //            flipBoard();
 //            turn = 1 - turn;
 //        }
-//        drawBoard();
-//        String move = "";
-//        for (int i = 0; i < 64; i++){
-//            if ("A".equals(Board[i/8][i%8])){
-//                move = move + moveKing(i);
-//            }
+//        for (int i = 0; i < 64; i++) {
+//                    if ("A".equals(Board[i / 8][i % 8])) {
+//                        kingPositionU = i;
+//                    }
+//                    if ("a".equals(Board[i / 8][i % 8])) {
+//                        kingPositionL = i;
+//                    }
 //        }
-//        System.out.println(move);
+        drawBoard();
+        String move = "";
+        move = movePieces();
+        //move = alphabeta(5, Integer.MIN_VALUE, Integer.MAX_VALUE, "", 0);
+        System.out.println(safeKing());
+        //System.out.println(move);
+        System.out.println(node);
+
     }
     public static String alphabeta(int depth, int alpha, int beta, String move, int player){
         String list = movePieces();
@@ -353,6 +361,14 @@ public class DMChess {
         return list;
     }
     public static boolean safeKing(){
+        for (int i = 0; i < 64; i++) {
+            if ("A".equals(Board[i / 8][i % 8])) {
+                kingPositionU = i;
+            }
+            if ("a".equals(Board[i / 8][i % 8])) {
+                kingPositionL = i;
+            }
+        }
         int distance = 1;
         int rowKing = kingPositionU / 8;
         int colKing = kingPositionU % 8;
