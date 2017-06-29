@@ -77,7 +77,7 @@ public class DMChess {
             {-50,-30,-30,-30,-30,-30,-30,-50}};
 
     static int node = 0;
-    static int globalDepth = 2;
+    static int globalDepth = 4;
     static int kingPositionU = 0;
     static int kingPositionL = 0;
     static boolean castlingUShort = true;
@@ -144,14 +144,23 @@ public class DMChess {
             undoMove(list.substring(i, i + 5));
             int value = Integer.parseInt(returnString.substring(5, returnString.length()));
             if (player == 0) {
-                if (value < beta){ beta = value; if (depth == globalDepth) {move = returnString.substring(0, 5);}}
+                if (value < beta){
+                    beta = value;
+                    if (depth == globalDepth) {
+                        move = list.substring(i, i+ 5);
+                    }
+                }
             }
             else{
-                if (value > alpha) {alpha = value; if (depth == globalDepth) {move = returnString.substring(0,5);}}
+                if (value > alpha) {
+                    alpha = value;
+                    if (depth == globalDepth) {
+                        move = list.substring(i, i+ 5);
+                    }
+                }
             }
             if (alpha >= beta) {
-                if (player == 0) return (move + beta);
-                else return (move + alpha);
+                break;
             }
         }
         if (player == 0) return (move + beta);
@@ -720,7 +729,7 @@ public class DMChess {
                     break;
                 case "Q" :
                     kingPositionU = i;
-                    if (!safeKing()){ score-=900;}
+                    if (!safeKing()){ score-=1000;}
                     break;
             }
         }
@@ -755,7 +764,7 @@ public class DMChess {
                         score += 500;
                         break;
                     case "K":
-                        score += 300;
+                        score += 325;
                         break;
                     case "B":
                         score += 250;
@@ -792,7 +801,7 @@ public class DMChess {
                         score += BoardQueen[row][col];
                         break;
                     case "A":
-                        if (material >= 1750) {
+                        if (material >= 1800) {
                             score += BoardKingMid[row][col];
                             score += moveKing(kingPositionU).length() * 10;
                         }
@@ -830,7 +839,7 @@ public class DMChess {
                 if (score[j] > max){ max = score[j]; maxPosition = j;}
             }
             score[maxPosition] = -1000000; // so that it wont be counted again
-            // add the move has maximum score in the head of newlista
+            // add the move has m faximum score in the head of newlista
             newlista = newlista + list.substring(maxPosition * 5, maxPosition * 5 + 5);
             // remove the move has maximum score form newlistb
             newlistb = newlistb.replace(list.substring(maxPosition * 5, maxPosition * 5 + 5),"");

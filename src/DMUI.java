@@ -100,7 +100,7 @@ public class DMUI extends Application
         Image image = new Image("image/icons/about.png");
         ImageView imageView = new ImageView(image);
         newGameAlert.setGraphic(imageView);
-        newGameAlert.setContentText("Choose type: ");
+        newGameAlert.setContentText("What piece color do you want to play? ");
 
         ButtonType buttonTypeWhite = new ButtonType("White");
         ButtonType buttonTypeBlack = new ButtonType("Black");
@@ -181,7 +181,8 @@ public class DMUI extends Application
 
         infoAlert.setContentText("Programmed by DMTeam.\n\n" +
                 "Programming based on:\n" + "Java & JavaFX Software\n" +
-                "1. DUY Le Trinh Khanh \n2.MINH Quang Thai\nOpen Source: https://github.com/duyltk/DMChessJV");
+                "1. DUY Le Trinh Khanh \n2.MINH Quang Thai\nOpen Source: https://github.com/duyltk/DMChessJV" +
+                "\nINTRODUCE: Choose Pices to show possible move");
         infoAlert.showAndWait();
     }
 }

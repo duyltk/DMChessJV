@@ -25,6 +25,10 @@ public class DMUI_Square extends Button{
 
     }
 
+    public int getX(){return this.x; }
+
+    public int getY(){ return this.y; }
+
     public void setPathGraphic(){
         piece = DMChess.Board[y][x];
 

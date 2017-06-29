@@ -60,28 +60,28 @@ public class DMUI_ChessBoard extends GridPane{
             DMUI.endGame(true);
             return;
         }
-        if (!DMUI.getPlayerWhite()){
-            String move = DMChess.alphabeta(DMChess.globalDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, "", 0);
-            DMChess.applyMove(move.substring(0, 5));
-        }
-        else {
-            String move = DMChess.alphabeta(DMChess.globalDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, "", 1);
-            DMChess.applyMove(move.substring(0, 5));
-        }
-        DMChess.flipBoard();
-        if(DMChess.movePieces().length() == 0)
-        {
-            DMUI.endGame(false);
-        }
-        DMChess.flipBoard();
+
+        String move = DMChess.alphabeta(DMChess.globalDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, "", 0);
+        DMChess.applyMove(move.substring(0, 5));
+
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
                 Square[x][y].setPathGraphic();
             }
         }
+        DMChess.flipBoard();
+        if(DMChess.movePieces().length() == 0)
+        {
+
+            DMUI.endGame(false);
+        }
+        DMChess.flipBoard();
     }
+
+
     public void onSpaceClick(int x, int y)
     {
+
         if (Character.isLowerCase(Square[x][y].piece.charAt(0)))
         {
             if (!flagClick)
@@ -161,7 +161,7 @@ public class DMUI_ChessBoard extends GridPane{
                     String applyMoveKing = "";
                     for (int i = 0; i < ListMove.length(); i+=5){
                         applyMoveKing = ListMove.substring(i, i + 5);
-                        if (applyMoveKing.charAt(4) == 'C' && (7-x) == Integer.parseInt(String.valueOf(applyMoveKing.charAt(1))))
+                        if (applyMoveKing.charAt(4) == 'C' && (7-x) == Integer.parseInt(String.valueOf(applyMoveKing.charAt(i + 1))))
                         {
                             DMChess.flipBoard();
                             DMChess.applyMove(applyMoveKing);
@@ -211,7 +211,7 @@ public class DMUI_ChessBoard extends GridPane{
                     int row = 7-Integer.parseInt(String.valueOf(ListMove.charAt(i + 2)));
                     if (x == col && y == row){
                         if (activeSquare.piece == "r"){
-                            if (x == 0){
+                            if (activeSquare.getX() == 7){
                                 DMChess.castlingLLong = false;
                             }
                             else
